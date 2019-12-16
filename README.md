@@ -1,2 +1,2 @@
 # learn-doc
-学习文档
+url : https://qingbing.github.io/learn-doc/
