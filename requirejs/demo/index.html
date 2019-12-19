@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Require Js</title>
+
+    <!-- require 加载方式一 -->
+    <script data-main="./js/config" src="./js/require.js"></script>
+
+    <!-- require 加载方式二 -->
+    <!--<script>
+        var require = {
+            deps: ["js/helper/util"],
+            callback: function(util) {
+                console.log(util);
+            }
+        };
+    </script>
+    <script src="./js/require.js"></script>-->
+
+    <!-- require 加载方式三 -->
+    <!--<script src="./js/require.js"></script>
+    <script>
+        require(["js/helper/util"], function (util) {
+            console.log(util);
+        });
+    </script>-->
+</head>
+<body>
+
+</body>
+</html>
+
+<script src="./js/require.js"></script>
+<script>
+    require(["js/helper/util", ...], function (util, ...) {
+        console.log(util);
+    });
+</script>

@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>require的模块定义</h1>
+
+    <div class="row">
+        <h3 class="page-header">一、键值对的定义方式</h3>
+        <pre>
+// 键值对的模块定义<br />
+define({<br />
+&nbsp; &nbsp; id: 'key-value',<br />
+&nbsp; &nbsp; say: function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; console.log("I am " + this.id);<br />
+&nbsp; &nbsp; }<br />
+});<br />
+        </pre>
+    </div>
+
+    <div class="row">
+        <h3 class="page-header">二、函数式的定义方式</h3>
+        <p>1. 返回键值对</p>
+        <pre>
+// 函数式的模块定义 - 返回键值对<br />
+define(function () {<br />
+&nbsp; &nbsp; return {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; id: 'function',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; say: function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log("I am " + this.id);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; };<br />
+});<br />
+        </pre>
+        <p>2. 返回一个函数</p>
+        <pre>
+// 函数式的模块定义 - 返回一个函数<br />
+define(function () {<br />
+&nbsp; &nbsp; return function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; console.log("I am define-call");<br />
+&nbsp; &nbsp; };<br />
+});<br />
+// 或者 带有参数 require<br />
+define(function (require) {<br />
+&nbsp; &nbsp; // 使用 require("module/name")();<br />
+&nbsp; &nbsp; return function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; console.log("I am define-call");<br />
+&nbsp; &nbsp; };<br />
+});<br />
+        </pre>
+    </div>
+
+    <div class="row">
+        <h3 class="page-header">三、定义时指定依赖</h3>
+        <pre>
+// 依赖式模块定义，依赖的引入依赖与data-main的路径和requirejs.config定义<br />
+define(['app/define-function'], function (df) {<br />
+&nbsp; &nbsp; df.say();<br />
+&nbsp; &nbsp; return {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; id: 'rely-define',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; say: function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log("I am " + this.id);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; };<br />
+});<br />
+        </pre>
+    </div>
+
+    <div class="row">
+        <h3 class="page-header">四、定义时指定模块名（命名空间）</h3>
+        <pre>
+// 强制命名空间, 不太建议用的方式(一旦使用，必须在config.path中配置key相同的命名空间，并指定路径，在require时也必须使用该命名空间来引用)<br />
+define("test/hasName", ["app/define-key-value"], function (keyValue) {<br />
+&nbsp; &nbsp; return {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; id: keyValue.id + " - with-name"<br />
+&nbsp; &nbsp; };<br />
+});<br />
+        </pre>
+        <pre>
+require.config({<br />
+&nbsp; &nbsp; // 加载模块的根路径<br />
+&nbsp; &nbsp; baseUrl: 'js',<br />
+&nbsp; &nbsp; // 指定命名空间或模块路径<br />
+&nbsp; &nbsp; paths: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 强制命名空间, 不太建议用的方式(一旦使用，必须在config.path中配置key相同的命名空间，并指定路径，在require时也必须使用该命名空间来引用)<br />
+&nbsp; &nbsp; &nbsp; &nbsp; "test/hasName": "apps/define-with-name",<br />
+&nbsp; &nbsp; },<br />
+});<br />
+        </pre>
+    </div>
+
+    <div class="row">
+        <h3 class="page-header">五、单文件，多模块定义，不建议使用</h3>
+        <pre>
+// 单文件，多模块定义<br />
+define("a", function () {<br />
+&nbsp; &nbsp; return {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; id: "multi-module-idA",<br />
+&nbsp; &nbsp; &nbsp; &nbsp; say: function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log("I am " + this.id);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; };<br />
+});<br />
+<br />
+define("b", function () {<br />
+&nbsp; &nbsp; return {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; id: "multi-module-idB",<br />
+&nbsp; &nbsp; &nbsp; &nbsp; say: function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log("I am " + this.id);<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; };<br />
+});<br />
+        </pre>
+        <pre>
+requirejs.config({<br />
+&nbsp; &nbsp; // 加载模块的根路径<br />
+&nbsp; &nbsp; baseUrl: 'js',<br />
+&nbsp; &nbsp; // 声明文件模块，一个文件可以有多个模块，当一个文件有多个模块时，必须用这个配置<br />
+&nbsp; &nbsp; // 对于声明了bundle的模块，require时直接require 对应的模块ID即可<br />
+&nbsp; &nbsp; bundles: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; "app/multi-module": ["a", "b"]<br />
+&nbsp; &nbsp; }<br />
+});<br />
+        </pre>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

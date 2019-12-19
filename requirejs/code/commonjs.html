@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>AMD-JS 封装 commonJs的方式</h1>
+
+    <div class="row">
+        <pre>
+// 封装 common js<br />
+define(function (require, exports, module) {<br />
+&nbsp; &nbsp; // 在commonjs中同步加载<br />
+&nbsp; &nbsp; // 中括号内所有都是commonJs的原生代码<br />
+&nbsp; &nbsp; let md5 = require('md5');<br />
+&nbsp; &nbsp; console.log(md5(2345));<br />
+<br />
+&nbsp; &nbsp; // 异步加载模式<br />
+&nbsp; &nbsp; require(["app/define-function"], function (func) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; func.say();<br />
+&nbsp; &nbsp; });<br />
+<br />
+&nbsp; &nbsp; // common js 对外暴露接口<br />
+&nbsp; &nbsp; exports.say = function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; console.log("common js a");<br />
+&nbsp; &nbsp; };<br />
+});<br />
+        </pre>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

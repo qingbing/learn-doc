@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Require js的config-demo</h1>
+
+    <div class="row">
+        <pre>
+// JS最终加载路径拼接规则 ： baseUrl + path[{key}] + ".js"<br />
+requirejs.config({<br />
+&nbsp; &nbsp; // 加载模块的根路径<br />
+&nbsp; &nbsp; baseUrl: 'js',<br />
+&nbsp; &nbsp; // 导出有两种方式<br />
+&nbsp; &nbsp; //&nbsp; &nbsp;- 定义目录别名<br />
+&nbsp; &nbsp; //&nbsp; &nbsp;- 定义具体的某个模块<br />
+&nbsp; &nbsp; paths: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 定义具体模块<br />
+&nbsp; &nbsp; &nbsp; &nbsp; jquery: 'libs/jquery-3.2.1.min',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; md5: 'libs/md5',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; animal: 'skim/animal',<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 定义到目录<br />
+&nbsp; &nbsp; &nbsp; &nbsp; app: 'apps',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; commonjs: 'commonjs',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; lib: 'libs',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; helper: 'helper',<br />
+&nbsp; &nbsp; &nbsp; &nbsp; rely: 'rely',<br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; // 强制命名空间, 不太建议用的方式(一旦使用，必须在config.path中配置key相同的命名空间，并指定路径，在require时也必须使用该命名空间来引用)<br />
+&nbsp; &nbsp; &nbsp; &nbsp; "test/hasName": "apps/define-with-name",<br />
+&nbsp; &nbsp; },<br />
+&nbsp; &nbsp; // 声明文件模块，一个文件可以有多个模块，当一个文件有多个模块时，必须用这个配置<br />
+&nbsp; &nbsp; // 对于声明了bundle的模块，require时直接require 对应的模块ID即可<br />
+&nbsp; &nbsp; bundles: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; "app/multi-module": ["a", "b"]<br />
+&nbsp; &nbsp; },<br />
+&nbsp; &nbsp; // 声明不规范的模块，require时使用键<br />
+&nbsp; &nbsp; shim: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; "underscore": {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // 模块的依赖<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; deps: [],<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; // 导出（提供的对外变量名）<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; exports: "_",<br />
+&nbsp; &nbsp; &nbsp; &nbsp; },<br />
+&nbsp; &nbsp; &nbsp; &nbsp; animal: {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; deps: ["skim/cat", "skim/dog"],<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; init : function () {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; console.log('init');<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; &nbsp; &nbsp; }<br />
+&nbsp; &nbsp; },<br />
+&nbsp; &nbsp; // 加载依赖<br />
+&nbsp; &nbsp; deps: ["helper/util"],<br />
+&nbsp; &nbsp; // 回调，加载完后执行<br />
+&nbsp; &nbsp; callback: function (util) {<br />
+&nbsp; &nbsp; &nbsp; &nbsp; console.log("require load over : " + util);<br />
+&nbsp; &nbsp; },<br />
+});<br />
+        </pre>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
