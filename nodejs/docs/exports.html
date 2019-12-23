@@ -3,51 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>LEARNER DOC</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Javascript 个人日常文档记录</h1>
+    <h1>Node.js - exports 模块导出对象</h1>
 
     <div class="panel-group">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 基础代码片段库</i></div>
+                <div class="panel-title"><i class="fa fa-book"></i>1. exports 模块导出对象</div>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="code/arguments.html" target="_blank">javascript 查看函数参数或函数体（函数本身）</a>
-                    </div>
-                </div>
+                <ol>
+                    <li>作用：将模块中需要共享到其他模块中的数据暴露（导出）到应用处</li>
+                    <li>
+                        <div>语法</div>
+                        <ol>
+                            <li>exports.属性名 = 值；</li>
+                            <li>exports.方法名 = 函数或函数名；</li>
+                        </ol>
+                    </li>
+                </ol>
             </div>
         </div>
 
-        <div class="panel panel-success">
+        <div class="panel panel-danger">
             <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 高阶代码片段库</i></div>
+                <div class="panel-title"><i class="fa fa-book"></i>2. 注意事项</div>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-book"></i> 学习记录</div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
+                <ol>
+                    <li>exports 是 module.exports 对象引用</li>
+                    <li>exports 是 module.exports 的引用不能改指向，只能添加属性和方法</li>
+                    <li>exports 和 module.exports 是用一个地址引用（exports===module.exports）</li>
+                    <li>mudule.exports 是真正的暴露对象，指向谁就暴露谁 <code>强烈推荐对于数据的暴露使用"module.exports"</code></li>
+                </ol>
             </div>
         </div>
     </div>

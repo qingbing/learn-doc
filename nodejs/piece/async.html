@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - 用setTimeout 或setInterval 实现异步代码</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. setTimeout异步代码结论</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>异步代码是在所有的同步代码执行完以后才执行</li>
+                    <li>setTimeout定义的异步代码里面，会按照（定义的时间点+延后执行的时间）排序进行执行（时间越早越快执行）</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 代码示例</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+console.log(1111);
+console.log(2222);
+
+setTimeout(function () {
+    console.log(3333);
+}, 900);
+
+// 时间在window系统中，最小是15ms，小于这个时间，会被自行修改成这个最小时间，不同的系统，这个最小时间不同，mac为10ms
+setTimeout(function () {
+    console.log(4444);
+}, 80); // mac上为10ms，window系统中为15ms
+
+console.time('t1');
+for (let i = 0; i <= 999999999; i++) {
+
+}
+console.timeEnd('t1');
+
+setTimeout(function () {
+    console.log(5555);
+}, 0);
+
+console.log(6666);
+                </pre>
+                <p><code>输出：</code></p>
+                <pre>
+1111
+2222
+t1: 679.639ms
+6666
+4444
+5555
+3333
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

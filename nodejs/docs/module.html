@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js module 模块的属性</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-puzzle-piece">1. module 模块的属性</i></div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li><a href="exports.html">module.exports</a> : 真正的暴露对象，exports只是它的引用
+                        <ol>
+                            <li>module.exports.属性 = 值</li>
+                            <li>module.exports.方法 = 函数</li>
+                            <li>module.exports = 函数或对象</li>
+                        </ol>
+                    </li>
+                    <li>module.id : 模块ID，模块名称</li>
+                    <li>module.parent : 模块的父亲</li>
+                    <li>module.filename : 模块的文件名和路径</li>
+                    <li>module.children : 子模块列表</li>
+                    <li>module.paths : 模块查找的路径，如果当前目录找不到node_modules，将去上层目录继续寻找node_modules，直至找到根目录为止。<br>
+                    如果配置了NODE_PATH环境变量，则会再去环境变量指向的路径查找
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

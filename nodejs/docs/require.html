@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - require 函数的注意事项</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. require 函数的注意事项</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>当引入的模块路径有错时，会报错</li>
+                    <li>当引入的模块有语法错误时，会报错</li>
+                    <li>当一个模块被多次引入时，只执行一次，并将暴露的对象直接写到缓存中，再次引入时会直接将缓存中的对象返回引入处</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

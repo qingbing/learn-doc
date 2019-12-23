@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - console 的控制台</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. nodejs 控制台的命令</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+console.log("普通消息打印"); // 用于输出普通信息
+let obj = {id:4, sex : 'nv'};
+console.dir(obj); // 该DOM结点以DOM树的结构进行输出，可以详细查对象的方法发展
+console.info('info - 用于输出提示性信息'); // 用于输出提示性信息
+console.debug('debug - 用于输出调试信息'); // 用于输出调试信息
+console.warn('warn - 用于输出警示信息'); // 用于输出警示信息
+console.error('error - 用于输出错误信息'); // 用于输出错误信息
+console.time('t1'); // 计时开始
+console.timeEnd('t1');  // 计时结束
+// 断言，console.assert（表达式， 表达式为false的打印输出字符）
+console.assert(1>2, '1>2 是错误的');
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

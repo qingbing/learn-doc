@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js 认识模块化</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-puzzle-piece">1. 什么是模块？</i></div>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li>所有的功能都是以模块的形式存在的</li>
+                    <li>每一个文件都是一个模块</li>
+                    <li>用户编写的代码都会自动封装到一个模块中</li>
+                    <li>模块之间相互独立，在一个模块中使用另一个模块的功能，就必须引入（require），使用的功能必须是另一个模块暴露（exports）的内容</li>
+                    <li>使用require时，如果模块后缀为 .js .json .node 时，模块后缀可以不写，自动补足顺序为 .js .json .node</li>
+                </ul>
+                <code>暴露数据</code>
+                <pre>
+exports.属性或方法 = 值;
+                </pre>
+                <code>引入模块</code>
+                <pre>
+require("./模块路径");
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-puzzle-piece">2. 模块的组成</i></div>
+            </div>
+            <div class="panel-body">
+
+                <p>所有用户编写的代码都放在模块（函数）文件中</p>
+                <p>用户自定的模块都封装在一个函数中，该函数提供五个参数，这5个参数在模块文件中可以直接使用。</p>
+                <ol>
+                    <li>exports : 暴露对象，可以将模块中的数据或方法暴露给引用的地方</li>
+                    <li>require : 引入模块的函数，用于在一个模块中引入另一个模块，并将子模块暴露的数据赋值给变量</li>
+                    <li>module : 模块对象，包含当前模块的所有信息</li>
+                    <li>__filename : 当前模块的文件名</li>
+                    <li>__dirname : 当前模块所在的路径（目录）</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 主模块</div>
+            </div>
+            <div class="panel-body">
+                <p>一个项目只允许有一个主模块，通常命名为：main.js， index.js， app.js， package.json文件中的main声明</p>
+                <p>主模块是整个项目的启动模块，对项目的其他模块进行统筹</p>
+            </div>
+        </div>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. 模块分类</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>自定义模块 ： 项目自己编写的文件模块</p>
+                        <p>引入 ： let mod = require('./filename.js');</p>
+                        <ul>
+                            <li>对于子模块，如果没有暴露数据时，返回空对象"{}"</li>
+                            <li>引入自定义模块务必添加"./"（当前路径）：在nodejs中查找模块默认的路径为"node_modules"目录</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>第三方模块</p>
+                        <p>引入 ： let _ = require('underscore');</p>
+                        <ul>
+                            <li>第三方程序员或公司开发的模块，需要先安装后使用</li>
+                            <li>安装可以使用nmp包管理工具（npm install {package}）(对于package的支持 ： https://www.npmjs.com/ )</li>
+                        </ul>
+                    </li>
+                    <li>
+                        <p>系统模块 ： nodejs 团队已经开发好的功能模块，直接引入使用即可，比如：fs、http、url、path、...</p>
+                        <p>引入 ： let fs = require('fs');</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

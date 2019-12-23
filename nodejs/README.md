@@ -4,6 +4,8 @@
 # 二、links
 - 中文官网 ： http://nodejs.cn/
 - 英文官网 ： http://nodejs.org/
+- npm管理工具 ： https://www.npmjs.com/
+- cnpm 淘宝镜像 ： https://npm.taobao.org/
 - 菜鸟教程 ： https://www.runoob.com/nodejs/nodejs-tutorial.html
 
 

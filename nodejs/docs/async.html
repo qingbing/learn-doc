@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - 异步的原理和实现方式</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 注意事项</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>异步一定有回调函数，有回调函数不一定是异步</li>
+                    <li>异步代码是在所有的同步代码执行完以后才执行</li>
+                    <li>setTimeout定义的异步代码里面，会按照（定义的时间点+延后执行的时间）排序进行执行（时间越早越快执行）</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 异步的实现方式</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>回调函数</p>
+                        <pre>
+// 异步一定有回调函数
+setTimeout(function () {
+    console.log(3333);
+}, 900);
+// 有回调函数不一定是异步
+let arr = [1, 2, 3, 4];
+arr.forEach(function (v, i) {
+    console.log(v);
+});
+                        </pre>
+                    </li>
+                    <li>
+                        <p>绑定事件 : 事件源.on('事件名称', '回调函数');</p>
+                        <pre>
+let http = require('http');
+// 创建服务器
+let server = http.createServer();
+// 绑定 request 事件
+http.on('request', function (req, res) {
+    res.writeHead(200, {"Content-Type": "text/html;charset=utf-8"});
+    res.write("你正在访问nodejs创建的服务器");
+    res.end();
+});
+// 监听80端口
+server.listen('80', function () {
+    console.log('服务器已运行');
+});
+                        </pre>
+                    </li>
+                    <li>
+                        <p>promise</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 异步的实现原理</div>
+            </div>
+            <div class="panel-body">
+                <img src="../data/async-principle.jpeg" style="width:100%;height:100%;"/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

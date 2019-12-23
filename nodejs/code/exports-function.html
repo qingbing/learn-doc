@@ -3,51 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>LEARNER DOC</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Javascript 个人日常文档记录</h1>
+    <h1>Node.js - module.exports 直接导出函数的代码</h1>
 
     <div class="panel-group">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 基础代码片段库</i></div>
+                <div class="panel-title"><i class="fa fa-book"></i>1. 子模块</div>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="code/arguments.html" target="_blank">javascript 查看函数参数或函数体（函数本身）</a>
-                    </div>
-                </div>
+                <pre>
+function show(what) {
+    console.log("Display " + what);
+}
+
+// exports = show; // 这里实际上是不能用exports执行函数的，最终引用处得到的是{}
+// 暴露函数正确的方式
+module.exports = show;
+                </pre>
             </div>
         </div>
 
-        <div class="panel panel-success">
+        <div class="panel panel-danger">
             <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 高阶代码片段库</i></div>
+                <div class="panel-title"><i class="fa fa-book"></i>2. 引用和使用函数模块</div>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-book"></i> 学习记录</div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
+                <pre>
+let show = require('./sub/exports-function');
+show('qingbing');
+                </pre>
             </div>
         </div>
     </div>

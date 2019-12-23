@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - npm 包管理工具</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 什么npm 包管理工具 ？</div>
+            </div>
+            <div class="panel-body">
+                <p>npm ： node package manager, 基于nodejs的包管理工具。</p>
+            </div>
+        </div>
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 什么 包 ？</div>
+            </div>
+            <div class="panel-body">
+                <p>在nodejs中：包 === 项目；模块 === 文件</p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. npm 常用命令</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>npm install ： 自动查找当前目录下的package.json文件，安装里面所有的依赖</li>
+                    <li>npm install {包名称} ： 安装指定包</li>
+                    <li>npm i {包名称} ： 是npm install 的简写</li>
+                    <li>npm i {包名称}@{版本号} ： 安装指定包的指定版本</li>
+                    <li>npm i {包名称} -g ： 全局安装，window下路径为 用户下\AppData\Roaming\npm\node_modules</li>
+                    <li>npm i {包名称} --save ： 将安装包写入package.json的依赖列表</li>
+                    <li>npm i {包名称} --save-dev ： 将安装包写入package.json的开发时依赖列表</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. npm 其他命令</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>npm search {包名称} ： 搜索包</li>
+                    <li>npm view {包名称} ： 查看包信息</li>
+                    <li>npm uninstall {包名称} ： 卸载包</li>
+                    <li>npm update {包名称} ： 更新包</li>
+                    <li>npm i {包名称} ： 是npm install 的简写</li>
+                    <li>npm i {包名称}@{版本号} ： 安装指定包的指定版本</li>
+                    <li>npm i {包名称} -g ： 全局安装，window下路径为 用户下\AppData\Roaming\npm\node_modules</li>
+                    <li>npm i {包名称} --save ： 将安装包写入package.json的依赖列表</li>
+                    <li>npm i {包名称} --save-dev ： 将安装包写入package.json的开发时依赖列表</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. cnpm 命令替代npm</div>
+            </div>
+            <div class="panel-body">
+                <p>npm 是一个文件下载工具，默认情况是去npmjs.com（github.com）下载资源</p>
+                <p>cnpm 是因为在国内下载npmjs.com的数据非常慢，所以淘宝制作了一个npmjs.com的镜像（可以下载，不能上传），是直接访问国内的缓存资源，cnpm会约10分钟同步一次npmjs的资源</p>
+                <p>安装 ： npm install -g cnpm --registry=https://registry.npm.taobao.org</p>
+                <p>使用 ： 和npm的命令一样</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

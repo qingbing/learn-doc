@@ -3,51 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>LEARNER DOC</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>Javascript 个人日常文档记录</h1>
+    <h1>javascript 查看函数参数或函数体（函数本身）</h1>
 
     <div class="panel-group">
         <div class="panel panel-info">
             <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 基础代码片段库</i></div>
+                <div class="panel-title"><i class="fa fa-puzzle-piece">1. 查看函数体</i></div>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="code/arguments.html" target="_blank">javascript 查看函数参数或函数体（函数本身）</a>
-                    </div>
-                </div>
+                <pre>
+// 打印函数体
+console.log(arguments.callee.toString());
+                </pre>
             </div>
         </div>
 
         <div class="panel panel-success">
             <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 高阶代码片段库</i></div>
+                <div class="panel-title"><i class="fa fa-puzzle-piece">2. 查看函数实参</i></div>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-warning">
-            <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-book"></i> 学习记录</div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
+                <pre>
+// 打印函数参数
+console.log(arguments);
+                </pre>
             </div>
         </div>
     </div>
