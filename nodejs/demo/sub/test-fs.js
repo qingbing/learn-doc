@@ -126,6 +126,36 @@ var status = fs.rmdirSync('./22');
 console.log(status);
 */
 
+/**
+ * 递归删除目录及文件
+ *
+ * @param {string} path
+ * @returns {boolean}
+ */
+var rmdir = function (path) {
+    // 读取文件列表
+    var fileList = fs.readdirSync(path);
+    fileList.forEach(function (v, i) {
+        // 拼接文件信息
+        var file = `${path}/${v}`;
+        // 读取文件信息
+        var stat = fs.statSync(file);
+        if (stat.isFile()) {
+            // 删除文件
+            fs.unlinkSync(file);
+        } else {
+            // 是目录，需要递归调用删除
+            rmdir(file);
+        }
+    });
+    // 删除空目录
+    fs.rmdirSync(path);
+    return true;
+};
+
+var status = rmdir('./testdir');
+console.log(status);
+
 
 
 
