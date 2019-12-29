@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - 文件系统模块 fs-目录操作</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 创建目录</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>异步创建目录</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步创建目录
+fs.mkdir('./testdir', function (err) {
+    if (err) {
+        throw err;
+    }
+});
+                                </pre>
+                    </li>
+                    <li>
+                        <p>同步创建目录</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 同步创建目录
+fs.mkdirSync('./testdi1r');
+                                </pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 读取文件目录下的目录及文件列表</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>异步读取目录下文件目录及文件列表</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步读取目录下文件目录及文件列表
+fs.readdir('./testdir', function (err, list) {
+    if (err) {
+        throw  err;
+    } else {
+        console.log(list);
+    }
+});
+                                </pre>
+                    </li>
+                    <li>
+                        <p>同步读取目录下文件目录及文件列表</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 同步读取目录下文件目录及文件列表
+var list = fs.readdirSync('./testdir');
+console.log(list);
+                                </pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 删除空目录</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>异步删除空目录</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步删除空目录
+fs.rmdir('./11', function (err, data) {
+    if (err) {
+        throw  err;
+    } else {
+        console.log(data);
+    }
+});
+                                </pre>
+                    </li>
+                    <li>
+                        <p>同步删除空目录</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 同步删除空目录
+var status = fs.rmdirSync('./22');
+console.log(status);
+                                </pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

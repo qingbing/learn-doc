@@ -64,7 +64,61 @@ server.listen('80', function () {
                         </pre>
                     </li>
                     <li>
-                        <p>promise</p>
+                        <p>promise ： </p>
+                        <ol>
+                            <li>
+                                <p>什么是promise？</p>
+                                <p><code>promise是ES6中新增的承诺对象，用于对异步的操作进行消息的传递</code></p>
+                            </li>
+                            <li>
+                                <p>promise 的状态：</p>
+                                <ol>
+                                    <li>Pending ： 等待中，完成后变成Resolved 或 Rejected</li>
+                                    <li>Resolved ： 成功</li>
+                                    <li>Rejected ： 失败</li>
+                                </ol>
+                            </li>
+                            <li>
+                                <p>promise的作用</p>
+                                <ol>
+                                    <li>用于实现异步消息的传递</li>
+                                    <li>由于异步返回结果时间顺序不可控，需要使用promise来统一管控输出结果</li>
+                                </ol>
+                            </li>
+                        </ol>
+                        <pre>
+let fs = require('fs');
+
+let p1 = new Promise(function (resolve, reject) {
+    fs.readFile('./data/promise_01.txt', function (err, data) {
+        if (err) {
+            reject("promise_01.txt 读取错误");
+        } else {
+            resolve(data.toString());
+        }
+    });
+});
+
+let p2 = new Promise(function (resolve, reject) {
+    fs.readFile('./data/promise_02.txt', function (err, data) {
+        if (err) {
+            reject("promise_02.txt 读取错误");
+        } else {
+            resolve(data.toString());
+        }
+    });
+});
+
+// 利用 Promise.all 只要有一个err发生，将不进行then里面的方法
+// 利用 Promise.all 方法可以实现手动调整异步输出的顺序，相当于把异步变成了同步
+Promise.all([p2, p1]).then(function (datas) {
+    for (let i = 0; i < datas.length; i++) {
+        console.log(datas[i]);
+    }
+}, function (errs) {
+    console.log(errs);
+});
+                        </pre>
                     </li>
                 </ol>
             </div>

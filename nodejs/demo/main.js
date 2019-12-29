@@ -11,5 +11,15 @@
 // require('./sub/console');
 
 
-require('./sub/async');
+// require('./sub/async');
+
+
+// require('./sub/test-promise');
+
+
+// require('./sub/test-buffer');
+
+
+require('./sub/test-fs');
+
 

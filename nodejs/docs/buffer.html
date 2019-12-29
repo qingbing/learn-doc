@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - 缓存区-buffer</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 什么是缓存区</div>
+            </div>
+            <div class="panel-body">
+                <p>在内存中开辟的一个临时区域，用于存放需要运算的字节码</p>
+            </div>
+        </div>
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 如何创建缓存区</div>
+            </div>
+            <div class="panel-body">
+                <p>由于在测试过程中，发现new Buffer()，已经已经建议废弃，这里根据后期的制作，参考 <a href="../code/buffer.html" class="btn btn-danger">buffer的实际使用</a></p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 写入缓冲区</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 向缓存区写入数据
+buf.write('张三'); // 在nodejs中，默认使用utf-8编码，一个中文占三个字节
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. 读取缓冲区</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 读取缓存区
+let out = buf.toString();
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. 复制缓冲区</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 创建指定长度的缓存区
+let buf = Buffer.alloc(10); // 创建5个字节的缓存区
+let buf1 = Buffer.alloc(20);
+
+buf.write('张三');
+// 复制缓冲区，是一个新的副本，将buf的内容复制给buf1
+buf.copy(buf1);
+
+// 打印buffer
+console.log(buf);
+console.log(buf1);
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

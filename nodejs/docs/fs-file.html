@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - 文件系统模块 fs-文件操作</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 什么是文件系统模块</div>
+            </div>
+            <div class="panel-body">
+                <p>由于nodejs是服务端运行的程序，需要提供服务器文件操作的模块，就是文件系统模块fs。</p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 读文件</div>
+            </div>
+            <div class="panel-body">
+                <p>提供两种读取文件的方式</p>
+                <ol>
+                    <li>
+                        <p>直接读取 ： 将文件中的所有内容全部读取到内存后才触发回调函数</p>
+                        <ol>
+                            <li>
+                                <p>异步读取</p>
+                                <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步读取文件内容
+fs.readFile("./main.js", function (err, data) {
+    if (err) {
+        console.log("读取文件错误" + err);
+    } else {
+        console.log(data.toString());
+    }
+});
+                                </pre>
+                            </li>
+                            <li>
+                                <p>同步读取</p>
+                                <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 同步读取文件内容
+let data = fs.readFileSync("./main.js");
+if(data){
+    console.log(data.toString());
+}
+                                </pre>
+                            </li>
+                        </ol>
+                    </li>
+                    <li>
+                        <p>流式读取 ： 读取一部分文件后就开始使用，边使用的方式</p>
+                        <code>未完待续</code>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 写入文件</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>异步写入</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步写入文件内容
+fs.writeFile("./index.html", "Hello node js!", function (err) {
+    if (err) {
+        console.log(err);
+    } else {
+        console.log("文件写入成功");
+    }
+});
+                                </pre>
+                    </li>
+                    <li>
+                        <p>同步写入</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 同步写入文件内容，返回undefined
+fs.writeFileSync("./index.html", "Hello world!");
+                                </pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. 读取文件信息</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>异步读取文件信息</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步写入文件内容
+fs.stat('./main.js', function (err, stat) {
+    if (err) {
+        throw err;
+    } else {
+        console.log(stat);
+    }
+});
+                                </pre>
+                    </li>
+                    <li>
+                        <p>同步读取文件信息</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步读取文件信息
+var stat = fs.statSync('./main.js');
+console.log(stat);
+                                </pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. 删除文件</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>异步删除文件</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步删除文件
+fs.unlink('./11.js', function (err) {
+    if (err) {
+        throw  err;
+    } else {
+        console.log("文件删除成功");
+    }
+});
+                                </pre>
+                    </li>
+                    <li>
+                        <p>同步删除文件</p>
+                        <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 异步读取文件信息
+var status = fs.unlinkSync('./22.js');
+console.log(status);
+                                </pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

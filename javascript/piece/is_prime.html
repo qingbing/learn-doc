@@ -3,51 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <title>LEARNER DOC</title>
-    <link rel="stylesheet" href="../css/main.css">
-    <link rel="stylesheet" href="../css/site.css">
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
 </head>
 <body>
 
 <div class="container">
-    <h1>underscore.js 个人日常文档记录</h1>
+    <h1>Javascript - 判断一个数是否是质数</h1>
 
     <div class="panel-group">
-        <div class="panel panel-info">
-            <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 基础代码片段库</i></div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="panel panel-success">
-            <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-puzzle-piece"> 高阶代码片段库</i></div>
-            </div>
-            <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
         <div class="panel panel-warning">
             <div class="panel-heading">
-                <div class="panel-title"><i class="fa fa-book"></i> 学习记录</div>
+                <div class="panel-title"><i class="fa fa-book"></i>1. 什么是质数</div>
             </div>
             <div class="panel-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <a href="javascript:void(0)" target="_blank">xxxxxx</a>
-                    </div>
-                </div>
+                <p>约数只有1和它本身两个的正整数。</p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 代码1</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * 判断一个数是否是质数
+ * @param {int} num
+ * @returns {boolean}
+ */
+function isPrime(num) {
+    if (num <= 1) {
+        return false;
+    }
+    let n = 2;
+    let max = Math.ceil(Math.sqrt(num));
+    for (let i = n; i <= max; i++) {
+        if (0 === num % n) {
+            return false;
+        }
+    }
+    return true;
+}
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 代码2</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * 判断一个数是否是质数
+ * @param {int} num
+ * @returns {boolean}
+ */
+function isPrime(num) {
+    let i = 2;
+    let rest;
+    do {
+        if (0 === num % i) {
+            return false;
+        }
+        rest = Math.ceil(num / i);
+        if (i >= rest) {
+            return true;
+        }
+        i++;
+    } while (true);
+}
+                </pre>
             </div>
         </div>
     </div>
