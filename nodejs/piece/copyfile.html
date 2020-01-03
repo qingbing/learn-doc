@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - 以流或管道的方式复制文件</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 以管道的方式复制文件（推荐使用）</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 声明文件系统
+let fs = require('fs');
+/ 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt');
+
+// 将读取流读出的数据直接用在写入流上
+readStream.pipe(writeStream);
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 以读写流的方式复制文件</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 声明文件系统
+let fs = require('fs');
+
+// 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt');
+
+// 读取流事件 : data，数据读取阶段 《常用事件》
+readStream.on('data', function (data) {
+    console.log('=== 文件读取中 ===');
+    writeStream.write(data);
+});
+
+// 读取流事件 : end，完成事件 《常用事件》
+readStream.on('end', function () {
+// 以流的方式写入，必须显示的声明结束
+    writeStream.end();
+    console.log('=== 文件复制完成 ===');
+});
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

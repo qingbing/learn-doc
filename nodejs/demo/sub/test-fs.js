@@ -132,6 +132,7 @@ console.log(status);
  * @param {string} path
  * @returns {boolean}
  */
+/*
 var rmdir = function (path) {
     // 读取文件列表
     var fileList = fs.readdirSync(path);
@@ -155,6 +156,132 @@ var rmdir = function (path) {
 
 var status = rmdir('./testdir');
 console.log(status);
+*/
+
+
+/*
+// 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 读取流事件 : open，错误事件
+readStream.on('open', function () {
+    console.log('=== 打开了 ===');
+});
+
+// 读取流事件 : ready，错误事件
+readStream.on('ready', function () {
+    console.log('=== 准备好了 ===');
+});
+
+// 读取流事件 : data，数据读取阶段 《常用事件》
+readStream.on('data', function (data) {
+    console.log('=== 读的过程 ===');
+    console.log(data.length);
+    console.log(readStream.bytesRead);
+});
+
+// 读取流事件 : end，完成事件 《常用事件》
+readStream.on('end', function () {
+    console.log('=== 读完了 ===');
+});
+
+// 读取流事件 : close，完成事件
+readStream.on('close', function () {
+    console.log('=== 关闭了 ===');
+});
+
+// 读取流事件 : error，错误事件 《常用事件》
+readStream.on('error', function (err) {
+    console.log('=== 发生错误 ===');
+    throw err;
+});
+*/
+
+/*
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt');
+
+// 写入流事件 : finish，完成事件
+writeStream.on('finish', function () {
+    console.log('=== 写完了 ===');
+});
+
+// 写入流事件 : error，错误事件
+writeStream.on('error', function (err) {
+    console.log('=== 发生错误 ===');
+    throw err;
+});
+
+// 写入数据
+writeStream.write("This is a brana");
+writeStream.write("This is an apple");
+writeStream.write("This is an orange");
+writeStream.write("This is a 哈哈");
+
+// 以流的方式写入，必须显示的声明结束
+writeStream.end();
+*/
+
+
+/*
+// 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt');
+
+// 读取流事件 : data，数据读取阶段 《常用事件》
+readStream.on('data', function (data) {
+    console.log('=== 文件读取中 ===');
+    writeStream.write(data);
+});
+
+// 读取流事件 : end，完成事件 《常用事件》
+readStream.on('end', function () {
+// 以流的方式写入，必须显示的声明结束
+    writeStream.end();
+    console.log('=== 文件复制完成 ===');
+});
+*/
+
+
+/*
+// 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt');
+
+// 将读取流读出的数据直接用在写入流上
+readStream.pipe(writeStream);
+*/
+
+
+/*
+// 声明压缩模块
+var zlib = require('zlib');
+
+// 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt.zip');
+
+// 将readStream读出的数据采用zlib的压缩后写入writeStream上
+readStream.pipe(zlib.createGzip()).pipe(writeStream);
+*/
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

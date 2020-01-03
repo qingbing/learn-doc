@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - 文件系统模块 fs-管道和链式流</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 认识管道</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>什么是管道？</p>
+                        <code>管道是nodejs中流的实现机制，直接定一个read流，导入write流</code>
+                    </li>
+                    <li>
+                        <p>管道的语法</p>
+                        <p><code>readStream.pipe(writeStream);</code></p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 以管道的方式复制文件</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 声明文件系统
+let fs = require('fs');
+/ 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt');
+
+// 将读取流读出的数据直接用在写入流上
+readStream.pipe(writeStream);
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 认识链式流</div>
+            </div>
+            <div class="panel-body">
+                <p>将多个管道链接起来，实现链式处理。</p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. 使用链式流实现大文件压缩</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 声明文件系统
+let fs = require('fs');// 声明压缩模块
+
+// 声明压缩模块
+var zlib = require('zlib');
+
+// 创建读取流
+var readStream = fs.createReadStream('./data/data.txt');
+
+// 创建写入流
+var writeStream = fs.createWriteStream('./data/data1.txt.zip');
+
+// 将readStream读出的数据采用zlib的压缩后写入writeStream上
+readStream.pipe(zlib.createGzip()).pipe(writeStream);
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

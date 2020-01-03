@@ -20,6 +20,9 @@
 // require('./sub/test-buffer');
 
 
-require('./sub/test-fs');
+// require('./sub/test-fs');
+
+
+require('./sub/test-path');
 
 

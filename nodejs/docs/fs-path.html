@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Node.js - path系统模块 path</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 认识 path 模块</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>什么是 path 模块？</dt>
+                            <dd>path 模块是nodejs中提供的一个系统模块，用于格式化或拼接一个完整的路径</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>path 模块的常用方法</dt>
+                            <dd>
+                                <ol>
+                                    <li>path.join(pa[, pa][, ...]) : 将多个字符串拼接成一个完整的路径</li>
+                                    <li>path.dirname(pa) : 返回路径中代表文件夹的部分</li>
+                                    <li>path.basename(pa) : 返回路径中的最后一部分，包含文件名和扩展名</li>
+                                    <li>path.extname(pa) : 返回路径中的后缀部分，及最后一个"."后的部分，如果路径中不包含"."，或该路径只有一个"."，且这个点为路径的第一个字符，返回空字符串</li>
+                                    <li>path.parse(pa) : 返回路径字符串的对象</li>
+                                    <li>path.format(paObj) : 从对象中返回路径字符串，和path.parse 相反</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>path 模块的不常用方法</dt>
+                            <dd>
+                                <ol>
+                                    <li>path.normalize(pa) : 格式化（简化、美化）路径</li>
+                                    <li>path.isAbsolute(pa) : 判断pa是否为绝对路径</li>
+                                    <li>path.resolve([from ...], to) : 将to参数解析为绝对路径</li>
+                                    <li>path.relative(from, to) : 将路径转换为相对路径</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>path 模块的几个属性</dt>
+                            <dd>
+                                <ol>
+                                    <li>path.sep : 平台文件路径的分隔符</li>
+                                    <li>path.delimiter : 平台特定的路径定界符（路径于路径之间的分割）</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. path.join()</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 声明path系统模块
+let path = require('path');
+
+// 拼接路径
+var pa = path.join(__dirname, 'xx');
+console.log(pa); // /mnt/hgfs/Vhosts/learn.us/learn-doc/nodejs/demo/sub/xx
+var pa = path.join('web', 'xx', 'yy');
+console.log(pa); // web/xx/yy
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 常用方法测试</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 声明path系统模块
+let path = require('path');
+
+var pa = './data/note.txt';
+console.log(path.dirname(pa)); // ./data
+console.log(path.basename(pa)); // note.txt
+console.log(path.extname(pa)); // .txt
+console.log(path.parse(pa));
+/*
+output :
+{
+  root: '',
+  dir: './data',
+  base: 'note.txt',
+  ext: '.txt',
+  name: 'note'
+}
+ */
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
