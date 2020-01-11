@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES5 - 严格模式</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 认识严格模式</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>理解</dt>
+                            <dd>除了正常的运行模式，ES5添加了第二种运行模式："严格模式"（strict mode）</dd>
+                            <dd>顾名思义，这种模式是的javascript在更严格的语法条件下运行</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>目的/作用</dt>
+                            <dd>消除Javascript语法的一些不合理，不严谨之处，减少一些诡异行为</dd>
+                            <dd>消除代码运行的一些不安全之处，为代码的安全运行保驾护航</dd>
+                            <dd>为未来新版本的JavaScript做好铺垫</dd>
+                        </dl>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-danger">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 严格模式的语法</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>使用</dt>
+                            <dd>在全局或函数的第一句使用 'use strict';</dd>
+                            <dd>如果浏览器不支持，也只是解析一条简单的语句，无任何其他副作用</dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <p>语法和行为改变</p>
+                        <ol>
+                            <li>
+                                <p>必须使用var声明变量</p>
+                                <pre>
+// 下面直接使用将报错 "{variable} is not defined"
+test = '12';
+                                </pre>
+                            </li>
+                            <li>
+                                <p>禁止自定义的函数中的 this 指向 window</p>
+                                <pre>
+function Person(name, age) {
+    // 函数中的this默认执行函数本身
+    this.name = name;
+    this.age = age;
+}
+
+// 构造函数需要使用 new 类实例化
+var p = new Person('qingbing', 30);
+// 以下自调用会报错，这种调用，函数内部的 this 将指向 window
+// var p = Person('qingbing', 30);
+                                </pre>
+                            </li>
+                            <li>
+                                <p>创建eval作用域</p>
+                                <pre>
+var name = 'qingbing';
+// 以下语句再非严格模式下，会将全局的name值改变，在严格模式下，eval内定义的作用域只在本 eval 中有效
+eval("var name = 'test'; console.log(name);");
+console.log(name);
+                                </pre>
+                            </li>
+                            <li>
+                                <p>对象不能有重名属性</p>
+                                <pre>
+// 以下重名定义在语法上会提示错误
+var obj = {
+    name : 'qingbing',
+    name : 'qingbing',
+};
+                                </pre>
+                            </li>
+                        </ol>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

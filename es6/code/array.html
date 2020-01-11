@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES5 : Array的常用方法</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. ES5 的 Array 常用方法</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>Array.prototype.indexOf(value) : 得到值在数组中的第一个下标</li>
+                    <li>Array.prototype.lastIndexOf(value) : 得到值在数组中的最后一个下标</li>
+                    <li>Array.prototype.forEach(function (item, index) {}) : 遍历数组</li>
+                    <li>Array.prototype.map(function (item, index) {}) : 遍历数组，返回一个新的数组，返回加工之后的值</li>
+                    <li>Array.prototype.filter(function (item, index) {}) : 遍历过滤出一个新数组，返回条件为true的值</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 示例代码</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+let arr = [2, 4, 3, 1, 2, 5, 5, 4];
+
+// Array.prototype.indexOf(value) : 得到值在数组中的第一个下标
+console.log(arr.indexOf(4));
+
+// Array.prototype.lastIndexOf(value) : 得到值在数组中的最后一个下标
+console.log(arr.lastIndexOf(4));
+
+// Array.prototype.forEach(function (item, index) {}) : 遍历数组
+arr.forEach(function (item, index) {
+    console.log(index + " : " + item);
+});
+
+// Array.prototype.map(function (item, index) {}) : 遍历数组，返回一个新的数组，返回加工之后的值
+let arr2 = arr.map(function (item, index) {
+    return item + 10;
+});
+console.log(arr2);
+
+// Array.prototype.filter(function (item, index) {}) : 遍历过滤出一个新数组，返回条件为true的值
+let arr3 = arr.filter(function (item, index) {
+    return 0 === item % 2;
+});
+console.log(arr3);</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

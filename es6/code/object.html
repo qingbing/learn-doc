@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES5 : Object的属性扩展 </h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. ES5 的 object 对象本上有两个方法 </div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>get propertyName(){} 用来得到当前属性值的回调函数</li>
+                    <li>set propertyName(val){} 用来监视当前属性值变化的回调函数</li>
+                </ol>
+                <pre>
+// 声明变量
+let obj = {
+    firstName: 'qingbing',
+    lastName: 'du',
+    get fullName() { // 定义fullName属性的get方法
+        return this.firstName + " " + this.lastName;
+    },
+    set fullName(data) { // 定义fullName属性的set方法
+        let t = data.split(" ");
+        this.firstName = t[0];
+        this.lastName = t[1];
+    },
+};
+
+console.log(obj);
+
+obj.fullName = 'Xiaowu Zhang'; // 设置，调用set
+console.log(obj.fullName); // 获取，调用get
+console.log(obj.firstName);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. ES5 给 object 扩展了一些静态方法，常用的有两个 </div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>Object.create(prototype, [descriptors])</p>
+                        <p>作用 ： 以指定对象为原型创建新的对象，指定对象会在新对象的 "__proto__" 中显示</p>
+                        <p>为新的对象指定新的属性，并对属性进行描述</p>
+                        <ol>
+                            <li>- <code>value</code> ： 指定值</li>
+                            <li>- <code>writable</code> ： 标识当前属性是否可以修改，默认false</li>
+                            <li>- <code>configurable</code> ： 标识当前属性是否可以被删除，默认false</li>
+                            <li>- <code>enumerable</code> ： 标识当前属性是否能用for in 枚举，默认false</li>
+                        </ol>
+                        <pre>
+let obj = {
+    name: 'qingbing',
+    age: 19
+};
+
+// 以对象为原型，扩展新对象，会在 __proto__ 中查看到原型对象信息，可以根据原型对象对新对象进行引用
+let obj1 = Object.create(obj);
+console.log(obj1);
+console.log(obj1.name);
+obj1.name = '1234';
+console.log(obj1.name);
+
+// 扩展新对象，并创建新属性，注意需要对新属性进行对应的描述
+let obj2 = Object.create(obj, {
+    sex: {
+        writable: true, // 是否可以修改，不设置为 false
+        configurable: true, // 是否可以被删除，不设置为 false
+        enumerable: true, // 是否能用for in 枚举，不设置为 false
+        value: 'nan'
+    }
+});
+console.log(obj2);</pre>
+                    </li>
+                    <li>
+                        <p>Object.defineProperties(object, descriptors)</p>
+                        <p>作用 ： 为指定对象扩展多个属性</p>
+                        <ol>
+                            <li>- <code>get</code> ： 用来获取当前属性值的回调函数</li>
+                            <li>- <code>set</code> ： 修改当前属性值的回调函数，并且实参即为修改后的值</li>
+                            <li>- 存取器属性 ： setter，getter 一个用以存值，一个用以取值</li>
+                        </ol>
+                        <pre>
+let obj = {
+    firstName: 'qingbing',
+    lastName: 'du'
+};
+
+Object.defineProperties(obj, {
+    fullName: {
+        get: function () {
+            return this.firstName + " " + this.lastName;
+        },
+        set: function (data) {
+            let t = data.split(" ");
+            this.firstName = t[0];
+            this.lastName = t[1];
+        }
+    }
+});
+console.log(obj);
+
+obj.fullName = 'Xiaowu Zhang';
+console.log(obj.fullName);
+console.log(obj.firstName);</pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
