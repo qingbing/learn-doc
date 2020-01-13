@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES6 —— 解构赋值的用法和多形参赋值</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 解构赋值 —— 对象赋值</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * let {propertyName1, propertyName2} = obj; // 变量必须是 obj 的属性
+ */
+let {username, age} = {
+    username: 'qingbing',
+    sex: 'nan',
+    age: 33,
+};
+console.log(username, age);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 解构赋值 —— 数组赋值</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * let [var1, var2] = array; // 变量随意命名，从前往后开始匹配
+ */
+let [a, b] = [1, 2, 3];
+console.log(a, b);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 解构赋值 —— 形参赋值</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * let [var1, var2] = array; // 变量随意命名，从前往后开始匹配
+ */
+function show({username, age}) {
+    console.log("username : " + username + "; age : " + age);
+}
+
+let person = {
+    username: 'zhangsan',
+    sex: 'nan',
+    age: '22',
+};
+show(person);
+show({username: 'qingbing', age: '19'});</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

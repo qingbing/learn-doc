@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES6——新增语法let,const,解构赋值，字符串模版，对象的简写</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. <code>let</code> 声明变量</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>作用</dt>
+                            <dd>于var类似，用于声明一个变量</dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <dl>
+                            <dt>特点</dt>
+                            <dd>在块作用域内有效</dd>
+                            <dd>不能重复定义</dd>
+                            <dd>不会预处理，不存在提升</dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <dl>
+                            <dt>应用</dt>
+                            <dd>循环变量监听</dd>
+                            <dd>使用let取代var是趋势</dd>
+                        </dl>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. <code>const</code> 声明常量</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>作用</dt>
+                            <dd>定义一个常量</dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <dl>
+                            <dt>特点</dt>
+                            <dd>定义时必须赋值</dd>
+                            <dd>值不能被修改</dd>
+                            <dd>在块作用域内有效</dd>
+                            <dd>不能重复定义</dd>
+                            <dd>不会预处理，不存在提升</dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <dl>
+                            <dt>应用</dt>
+                            <dd>定义和保存不会改变的数据，eg：const PI = 3。1415926;</dd>
+                        </dl>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. <code>解构赋值</code></div>
+            </div>
+            <div class="panel-body">
+                <p>从对象或数组中提取数据，并赋值给多个变量，这里定义的变量作用同直接用let 或 var 定义一样；</p>
+                <p>用途 ： 给多个形参赋值</p>
+                <p><a href="../code/struct-parse.html" class="btn btn-warning"><i class="fa fa-link"></i> 使用方法</a></p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. <code>模板字符串</code></div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>用途 ： 简化字符串的拼接</li>
+                    <li>模板字符串必须用 `` 包含</li>
+                    <li>变量的使用 ${var} 指定</li>
+                </ol>
+                <pre>
+// 定义变量
+let {name, sex} = {
+    name: "qingbing",
+    sex: "nan",
+};
+// 定义模板字符串
+let msg = `My name is ${name}, I'm ${sex}`;
+// 输出
+console.log(msg);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. <code>对象的简写</code></div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>变量同名的属性可以省略不写</li>
+                    <li>可以省略函数的 function 标识不写</li>
+                </ol>
+                <pre>
+// 定义变量
+let {className, gradeName} = {
+    gradeName: 'Grade Two',
+    className: 'Class One',
+};
+// 根据变量定义对象的常见方法
+let info1 = {
+    className: className,
+    gradeName: gradeName,
+    seat: 'One',
+    getInfo: function () { // 可以省略函数的function
+        return this.className;
+    }
+};
+console.log(info1);
+// 根据变量定义对象的简化方法（前提：变量和对象的属性名一样才可以）
+let info2 = {
+    className, // 变量同名的属性可以省略不写
+    gradeName,
+    seat: 'One',
+    getInfo() { // 可以省略函数的 function 标识不写
+        return this.className;
+    }
+};
+console.log(info2);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>6. <code>箭头函数</code></div>
+            </div>
+            <div class="panel-body">
+                <p><a href="../code/arrow-func.html" class="btn btn-warning"><i class="fa fa-link"></i> 使用方法</a></p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>7. <code>三点运算符</code></div>
+            </div>
+            <div class="panel-body">
+                <p><a href="../code/three-dot.html" class="btn btn-warning"><i class="fa fa-link"></i> 使用方法</a></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES5 : 函数this指针绑定函数 apply，call，bind</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 通用准备及区别简介</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>fn.call(obj, p1, p2...) : 绑定函数this，并马上执行</li>
+                    <li>apply(obj, [p1, p2...]) : 绑定函数this，并马上执行</li>
+                    <li>fn.bind(obj, p1, p2...) : 绑定函数this，不立即执行，而是将函数返回</li>
+                </ol>
+                <pre>
+// 指定绑定对象
+let obj = {
+    name: undefined,
+    age: 30,
+};
+
+// 指定需要绑定的函数
+function init(name, age) {
+    // 该函数如果不绑定指针，this将默认指向window，函数将报错
+    this.name = name;
+    if ('undefined' !== typeof age) {
+        this.age = age;
+    }
+}</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. fn.call(obj, p1, p2...) : 绑定函数this，并马上执行</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 用 call 绑定函数的this指针并执行
+init.call(obj, 'qingbing', 33);
+console.log(obj);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. apply(obj, [p1, p2...]) : 绑定函数this，并马上执行</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 用 apply 绑定函数的this指针并执行
+init.apply(obj, ['qingbing', 34]);
+console.log(obj);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. fn.bind(obj, p1, p2...) : 绑定函数this，不立即执行，而是将函数返回</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 用 bind 绑定函数的this指针，等待执行
+let init1 = init.bind(obj, 'what', 100);
+init1();
+console.log(obj);
+
+// bind常用于回调函数中绑定函数this
+setTimeout(function () {
+    console.log(this);
+}.bind(obj), 1000);</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
