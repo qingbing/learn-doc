@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES6 —— generator 函数的使用代码示例</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 普通使用</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+function* mGenerator() {
+    console.log('一哥');
+    yield 'first';
+    console.log('二哥');
+    yield 'second';
+    console.log('三弟');
+}
+
+let mg = mGenerator();
+console.log(mg);
+mg.next();
+mg.next();
+mg.next();
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 返回值作为最后一个yield使用</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+function* myGenerator() {
+    let first = yield 'first';
+    console.log(first);
+    let second = yield 'second'; // second 的值可以用过 mg.next(实参) 进行赋值，赋值以后后面的yeild都可以使用
+    console.log(first);
+    console.log(second);
+    return 'aaa'; // 可以判断当my.next().value === returnVal 时，其实已经遍历完成，默认返回的是undefined
+}
+
+let mg = myGenerator();
+console.log(mg.next('11'));
+console.log(mg.next('22'));
+console.log(mg.next('33'));
+console.log(mg.next('44'));
+console.log('5555');</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 模拟文章，评论遍历</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 通用 ajax 方法
+let myAjax = (url, success, failure) => {
+    // promise 状态为 pending：初始化
+    // 创建xmlHttp实例对象
+    let xmlHttp = new XMLHttpRequest();
+    // 监听xmlHttp的状态
+    xmlHttp.onreadystatechange = () => { // 有5中状态
+        if (xmlHttp.readyState === 4) {
+            if (xmlHttp.status === 200) {
+                // 请求成功
+                if (typeof success === 'function') {
+                    success(JSON.parse(xmlHttp.response)); // 或者 xmlHttp.responseText
+                }
+            } else {
+                // 请求失败
+                if (typeof  failure === 'function') {
+                    failure('暂时没有新数据');
+                }
+            }
+        }
+    };
+
+    // xmlHttp.open 设置请求的方式和url
+    xmlHttp.open('GET', url);
+    // xmlHttp发送请求
+    xmlHttp.send();
+};
+
+// 获取新闻内容
+function getNews(url) {
+    myAjax(url, data => {
+        console.log(data);
+        // 请求评论内容
+        let url = `data/comments.json?_=id=${data.id}&` + Math.random();
+        // 遍历sender，获取评论信息
+        sender.next(url);
+    }, errMsg => {
+    });
+}
+
+// 定义 sender 发送ajax 遍历流程
+function* sendJson(url) {
+    let commentUrl = yield getNews(url);
+    yield getNews(commentUrl);
+}
+
+// 使用
+let url = `data/news.json?_=` + Math.random();
+let sender = sendJson(url);
+sender.next();
+</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

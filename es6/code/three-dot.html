@@ -167,6 +167,28 @@ let arr = [...map.keys()];
 </pre>
             </div>
         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>9. 多个数求和</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 定一个多个数求和的函数
+let sum = (...val) => {
+    let total = 0;
+    val.forEach((value, index) => {
+        total += value;
+    });
+    return total;
+};
+// 多个数求和
+console.log(sum(5, 7, 9, 4, 3));
+// 数组求和
+console.log(sum(...[5, 7, 9, 4, 3]));
+                </pre>
+            </div>
+        </div>
     </div>
 </div>
 

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES6 —— class 类的使用代码示例</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <pre>
+class Person {
+    // 构造函数
+    constructor(name, age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    // 其他普通函数
+    info() {
+        console.log(`name : ${this.name}; age : ${this.age}`);
+    }
+}
+
+let p1 = new Person('qingbing', 34);
+console.log(p1);
+p1.info();
+
+class Worker extends Person {
+
+    constructor(name, age, sex) {
+        super(name, age); // 如果子类必须要 contructor 的话，第一行必须使用 super 函数调用父类
+        this.sex = sex;
+    }
+
+    // 重写父类方法
+    info() {
+        console.log(`name : ${this.name}; age : ${this.age}, sex : ${this.sex}`);
+    }
+}
+
+let w1 = new Worker('qingbing', 34, 'nan');
+console.log(w1);
+w1.info();</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

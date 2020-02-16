@@ -168,8 +168,344 @@ console.log(info2);</pre>
                 <p><a href="../code/three-dot.html" class="btn btn-warning"><i class="fa fa-link"></i> 使用方法</a></p>
             </div>
         </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>8. <code>Promise承诺对象</code></div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>理解</dt>
+                            <dd>
+                                <ol>
+                                    <li>Promise对象代表未来将要发生的事件（通常时一个异步操作）</li>
+                                    <li>有了 Promise对象，可以将异步的操作以同步的流程表达出来，避免了层层嵌套的回调函数（俗称"回调地狱"）</li>
+                                    <li>es6的Promise对象是一个构造函数，需要用new来生成promise实例</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>使用</dt>
+                            <dd>
+                        <pre>
+// 创建 promise 实例
+let promise = new Promise((resolve, reject) => {
+    // 初始化的promise实例状态为pending
+    if (true) {
+        resolve(data); // 修改 promise实例 的状态为 fullfilled
+    } else {
+        reject(errMsg); // 修改 promise实例 的状态为 rejected
+    }
+});
+
+// 调用promise的then
+promise.then((data) => {
+    console.log('success');
+}, (errMsg) => {
+    console.log('failure');
+});</pre>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>promise 实例的三中状态</dt>
+                            <dd>
+                                <ol>
+                                    <li>pending ： 初始化状态</li>
+                                    <li>fullfilled ： 成功状态</li>
+                                    <li>rejected ： 失败状态</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>应用</dt>
+                            <dd>
+                                <ol>
+                                    <li>使用 promise 实现超时处理</li>
+                                    <li>使用 promise 封装处理ajax请求 参考 <a href="../piece/promise_ajax.html" class="btn btn-warning"><i class="fa fa-link"></i> promise封装的ajax并实现promise.then的链式调用</a></li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>9. <code>Symbol</code> 新增数据类型</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dd>前言 ： ES5中对象的属性名都是字符串，容易造成重名，污染环境</dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <dl>
+                            <dd>概念 ： ES6中添加了一种原始的数据类型Symbol（已有的原始数据类型：String, Number, Boolean, Null, Undefined, Object）</dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <dl>
+                            <dt>特点</dt>
+                            <dd>
+                                <ol>
+                                    <li>Symbol属性值对应的值是唯一的，解决命名冲突问题</li>
+                                    <li>Symbol值不能与其他数据进行计算，包括字符串拼接</li>
+                                    <li>for in，for of 遍历时不会遍历Symbol的属性</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+
+                    <li>
+                        <dl>
+                            <dt>使用</dt>
+                            <dd>
+                                <ol>
+                                    <li>
+                                        <dl>
+                                            <dt>调用Symbol函数得到symbol的值</dt>
+                                            <dd><pre>
+let symbol = Symbol();
+let obj = {};
+obj[symbol] = 'hello';</pre></dd>
+                                        </dl>
+                                    </li>
+                                    <li>Symbol值不能与其他数据进行计算，包括字符串拼接</li>
+                                    <li>for in，for of 遍历时不会遍历Symbol的属性</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                </ol>
+                <pre>
+let symbol = Symbol();
+let obj = {name: 'qingbing'};
+obj[symbol] = 'hello';
+console.log(obj);
+
+for (let i in obj) { // for-in 不能遍历symbol
+    console.log(i, obj[i]);
+}
+
+
+let symbol1 = Symbol();
+let symbol2 = Symbol();
+
+console.log(symbol1 === symbol2); // false
+
+// 可以指定常量值
+const PERSON_KEY = Symbol('person_key');
+console.log(PERSON_KEY);</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>10. <code>Iterator、for...of</code> 的使用</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>概念：iterator 是一种接口机制，为各种不同的数据结构提供统一的访问机制</li>
+                    <li>
+                        <dl>
+                            <dt>作用：</dt>
+                            <dd>
+                                <ol>
+                                    <li>为各种数据结构提供一个统一的、简便的访问接口</li>
+                                    <li>使得数据结构的成员能够按照某种次序排列</li>
+                                    <li>ES6 创造了一种新的遍历命令 for...of循环，Iterator主要供for...of消费</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>工作原理：</dt>
+                            <dd>
+                                <ol>
+                                    <li>创建一个指针对象（遍历器对象），指向数据结构的开始位置</li>
+                                    <li>第一次调用next方法，指针自动指向数据结构的第一个成员</li>
+                                    <li>接下来不断调用next方法，指针会一直后移，直到数据结构的最后一个成员</li>
+                                    <li>
+                                        <p>每调用next方法返回一个包含value和done的对象，{value : 当前成员, done : boolean值}</p>
+                                        <ol>
+                                            <li>value ： 当前成员的值，</li>
+                                            <li>done ： 当前数据接口是否遍历结束</li>
+                                            <li>当遍历结束时返回的value是undefined，done值为false</li>
+                                        </ol>
+                                    </li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <p>原生具备iterator接口的数据（可用for...of遍历）: <code>Array, String, arguments, set 容器, map 容器</code></p>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>扩展理解：</dt>
+                            <dd>
+                                <ol>
+                                    <li>当数据结构上部署了Symbol.iterator接口，该数据就是可以用 for...of 遍历</li>
+                                    <li>当使用for...of 遍历数据时，该数据会自动去找Symbol.iterator 属性 </li>
+                                    <li>Symbol.iterator 属性指向对象的默认遍历方法</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li><a href="../piece/promise_ajax.html" class="btn btn-warning"><i class="fa fa-link"></i> ES6 —— Iterator(原理)代码模拟及让Object拥有for-of功能</a></li>
+                </ol>
+                <pre>
+// 定义数组
+let arr = [9, 8, 6, 5, 4, 3];
+
+console.log("===== for-of  ====== ");
+// 循环遍历 Array
+for (let i of arr) { // i 为值
+    console.log(i);
+}
+console.log("===== for-in  ====== ");
+// 循环遍历 Array
+for (let i in arr) { // i 为索引
+    console.log(arr[i]);
+}</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>11. <code>generator</code> 函数</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>概念</dt>
+                            <dd>
+                                <ol>
+                                    <li>ES6提供的解决异步编程的方案之一</li>
+                                    <li>Generator函数是一个状态机，内部封装了不同状态的数据</li>
+                                    <li>用来生成遍历对象</li>
+                                    <li>可暂停函数（惰性求值），yield 可暂停，next方法可启动，每次返回的是yield后的表达式结果</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>特点</dt>
+                            <dd>
+                                <ol>
+                                    <li>function 与函数名之间有一个星号（*）</li>
+                                    <li>内部用yield表达式定义不同的状态</li>
+                                    <li>generator函数返回的是指针对象，而不会执行函数内部的逻辑</li>
+                                    <li>调用next方法函数内部逻辑开始执行，遇到yield表达式停止，返回{value:yield后的表达式结果/undefined，done}</li>
+                                    <li>再次调用next方法会从上一次停止时的yield处开始执行，直到最后</li>
+                                    <li>yield语句返回结果通常为undefined，当调用next方法时传参内容会作为启动时yield语句的返回值</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="../code/generator.html" class="btn btn-warning"><i class="fa fa-link"></i> ES6 —— generator 函数的使用代码示例</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>12. <code>class</code> 类的使用</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>通过class定义类/实现类的继承</li>
+                    <li>在类中通过constructor定义构造方法</li>
+                    <li>通过new来创建类的实例</li>
+                    <li>通过extends来实现类的继承</li>
+                    <li>通过super调用父类的构造方法</li>
+                    <li>重写从父类中继承的方法</li>
+                    <li>
+                        <a href="../code/class.html" class="btn btn-warning"><i class="fa fa-link"></i> ES6 —— class 类的使用代码示例</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>13. <code>set、map</code> 容器的使用</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>Set 容器 ： 无序不可重复的多个value的集合体</dt>
+                            <dd>
+                                <ol>
+                                    <li>Set() :</li>
+                                    <li>Set(array) :</li>
+                                    <li>add(value) : 添加一个value</li>
+                                    <li>delete(value) : 删除value</li>
+                                    <li>has(value) : 容器是否包含value</li>
+                                    <li>clear() : 清空容器</li>
+                                    <li>size : 容器的长度</li>
+                                </ol>
+                            </dd>
+                            <dd><pre>
+let set = new Set([2, 3, 4, 5, 5, 4, 3, 2]);
+set.add(7);
+set.delete(2);
+console.log(set.size);
+console.log(set.delete(4));
+set.clear();
+console.log(set);</pre></dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>Map 容器 ： 无序的key，不重复的多个key-value的集合体</dt>
+                            <dd>
+                                <ol>
+                                    <li>Map() :</li>
+                                    <li>Map(array) :</li>
+                                    <li>set(key, value) : 设置key-value</li>
+                                    <li>get(key) : 获取key</li>
+                                    <li>delete(key) : 删除key</li>
+                                    <li>has(key) : 容器是否包含key</li>
+                                    <li>clear() : 清空容器</li>
+                                    <li>size : 容器的长度</li>
+                                </ol>
+                            </dd>
+                            <dd><pre>
+let map = new Map([['username', 'qingbing'], ['age', 12]]);
+map.set('name', 'haha');
+console.log(map.get('username'));
+map.delete('age');
+
+console.log(map);
+</pre></dd>
+                        </dl>
+                    </li>
+                </ol>
+            </div>
+        </div>
     </div>
 </div>
+
 
 <div class="container margin-top">
     <div class="panel-group">

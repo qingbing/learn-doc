@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES6 —— 数值扩展</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <ol>
+                    <li>二进制和八进制数值表示方法 ： 二进制用 0b, 八进制用 0o</li>
+                    <li>Number.isFinite(i) : 判断是否是有限大的数</li>
+                    <li>Number.isNaN(i) : 判断是否是NaN</li>
+                    <li>Number.isInteger(i) : 判断是否是整数</li>
+                    <li>Number.parseInt(str) : 将字符串转换为对应的数值</li>
+                    <li>Math.trunc(i) : 直接去除小数部分</li>
+                </ol>
+                <pre>
+
+console.log(0b1010); // 10
+
+console.log(0o56); // 46
+
+console.log(Number.isFinite(Infinity)); // false
+
+console.log(Number.isNaN(NaN)); // true
+
+console.log(Number.isInteger(123.1)); // false
+console.log(Number.isInteger(123.0)); // true
+console.log(Number.isInteger(123)); // true
+
+console.log(Number.parseInt('123sdf')); // 123
+console.log(Number.parseInt('a123sdf')); // NaN
+
+console.log(Math.trunc(123.1)); // 123
+console.log(Math.trunc(123.6)); // 123
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

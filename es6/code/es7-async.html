@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES7 —— async 真正的异步代码同步化</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. async 的基本使用</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+function foo() {
+    return new Promise((resolve, reject) => {
+        setTimeout(resolve, 2000);
+    });
+}
+
+async function test() {
+    console.log('start', new Date().toTimeString());
+    await foo();
+    console.log('end', new Date().toTimeString());
+    return '23456';
+}
+
+test();</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 获取文章和评论的async代码示例</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 通用 ajax 方法
+let myAjax = (url, success, failure) => {
+    // promise 状态为 pending：初始化
+    // 创建xmlHttp实例对象
+    let xmlHttp = new XMLHttpRequest();
+    // 监听xmlHttp的状态
+    xmlHttp.onreadystatechange = () => { // 有5中状态
+        if (xmlHttp.readyState === 4) {
+            if (xmlHttp.status === 200) {
+                // 请求成功
+                if (typeof success === 'function') {
+                    success(JSON.parse(xmlHttp.response)); // 或者 xmlHttp.responseText
+                }
+            } else {
+                // 请求失败
+                if (typeof  failure === 'function') {
+                    failure('暂时没有新数据');
+                }
+            }
+        }
+    };
+
+    // xmlHttp.open 设置请求的方式和url
+    xmlHttp.open('GET', url);
+    // xmlHttp发送请求
+    xmlHttp.send();
+};
+
+// 获取新闻内容
+
+function getNews(url) {
+    return new Promise((resolve, reject) => {
+        myAjax(url, data => resolve(data), err => resolve(false));
+
+        // => 等同于以下代码
+        // myAjax(url, function (data) {
+        //     resolve(data);
+        // }, function (err) {
+        //     resolve(false);
+        // });
+    })
+}
+
+// async 异步获取数据
+async function sendJson(url) {
+    // 请求文章内容
+    let data = await getNews(url);
+    console.log(data);
+    // 请求评论内容
+    url = `data/comments.json?_=id=${data.id}&` + Math.random();
+    data = await getNews(url);
+    console.log(data);
+}
+
+// 使用
+let url = `data/news.json?_=` + Math.random();
+sendJson(url);
+</pre>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

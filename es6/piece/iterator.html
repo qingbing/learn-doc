@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES6 —— Iterator(原理)代码模拟及让Object拥有for-of功能</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. Iterator(原理)代码模拟</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 模拟指针对象（遍历器对象）
+let myIterator = (arr) => {
+    let curIndex = 0;
+    return {
+        next() {
+            return curIndex < arr.length ? {value: arr[curIndex++], done: false} : {value: undefined, done: true};
+        }
+    };
+};
+let arr = [9, 8, 6, 5, 4, 3];
+let myIteratorObj = myIterator(arr);
+while (true) {
+    let item = myIteratorObj.next();
+    console.log(item);
+    if (item.done) {
+        break;
+    }
+}
+</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 让Object拥有for...of功能</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 为Object数据类型添加iterator特性，是的 Object 的数据可以使用 for-of 遍历
+Object.prototype[Symbol.iterator] = function () {
+    let _obj = Object.values(this);
+    let len = _obj.length;
+    let curIndex = 0;
+    return {
+        next() {
+            return curIndex < len ? {value: _obj[curIndex++], done: false} : {value: undefined, done: true};
+        }
+    };
+};
+
+// 定义Object 数据
+let obj = {
+    username: 'qingbing',
+    age: 22
+};
+
+// 循环遍历Object
+for (let i of obj) {
+    console.log(i);
+}</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 为单个object扩展iterator，使其拥有 for...of功能</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+// 定义Object 数据
+let obj = {
+    username: 'qingbing',
+    age: 22,
+    [Symbol.iterator]: function () {
+        let curIndex = 0;
+        let _obj = Object.values(this);
+        let len = _obj.length;
+        return {
+            next() {
+                return curIndex < len ? {value: _obj[curIndex++], done: false} : {value: undefined, done: true};
+            }
+        };
+    }
+};
+
+// 循环遍历Object
+for (let i of obj) {
+    console.log(i);
+}</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

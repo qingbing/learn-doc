@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>ES7——新增语法</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. <code>async</code> 函数</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>概念 : 真正意义上去结局异步回调的问题，同步流程表达异步操作</li>
+                    <li>本质 : Generator的语法糖</li>
+                    <li>
+                        <dl>
+                            <dt>语法</dt>
+                            <dd>
+                                <pre>
+    async function foo() {
+        await 异步操作;
+        await 异步操作;
+    }</pre>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>特点</dt>
+                            <dd>
+                                <ol>
+                                    <li>不需要想Generator那样去调用next方法，遇到await就等待，当前的异步操作完成就往下执行</li>
+                                    <li>返回的总是 Promise 对象，可以用then方法进行下一步操作</li>
+                                    <li>async取代generator函数的星号 * ，await 取代Generator函数的yield</li>
+                                    <li>语意上更为明确，使用简单，就目前而言，尚无不良反应</li>
+                                    <li>await 返回值</li>
+                                </ol>
+                            </dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <a href="../code/es7-async.html" class="btn btn-warning"><i class="fa fa-link"></i> ES7 —— async 真正的异步代码同步化</a>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. <code>**</code> 指数运算符</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+console.log(3 ** 4); // 81</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. <code>Array.prototype.includes(value)</code> 判断数组中是否包含指定value</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+let arr = [2, 4, 5, 7, 4, 7];
+console.log(arr.includes(4)); // true
+console.log(arr.includes(8)); // false</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

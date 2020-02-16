@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>数据（Object/Array）的深度拷贝</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 数据拷贝</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <dl>
+                            <dt>基本数据类型</dt>
+                            <dd>拷贝后会生成一份新的数据，修改拷贝以后的数据不会影响原数据</dd>
+                        </dl>
+                    </li>
+                    <li>
+                        <dl>
+                            <dt>对象/数组</dt>
+                            <dd>拷贝后不会生成一份新的数据，而是拷贝的引用，修改拷贝以后的数据会影响原数据</dd>
+                            <dd>拷贝数组/对象时，不是生成新的数据而是复制了一份引用</dd>
+                        </dl>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. Object/Array拷贝的两种方式</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>浅拷贝 ： 拷贝的引用，修改拷贝以后的数据会影响到原数据，使得原数据不安全</li>
+                    <li>深拷贝（深度克隆） ： 拷贝的时候生成新数据，修改拷贝以后的数据不会影响到原数据</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 数据深度克隆代码</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+function clone(data) {
+    // 初始化变量，成为最终克隆的数据
+    let R;
+    let type = Object.prototype.toString.call(data).slice(8, -1);
+    if ('Object' === type) {
+        R = {};
+    } else if ('Array' === type) {
+        R = [];
+    } else {
+        return data;
+    }
+
+    // 利用for in循环对象/数组
+    for (let i in data) {
+        R[i] = clone(data[i]);
+    }
+    return R;
+}
+
+let data = {
+    'user': 'user',
+    show() {
+        console.log(this.user);
+    },
+    'data': [{
+        course: '语文',
+        score: 99,
+    }, {
+        course: '数学',
+        score: 99,
+    }]
+};
+
+let data1 = clone(data);
+data1.data[0].score = 100;
+console.log(data);
+console.log(data1);
+</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. 数据深度克隆思路</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+思考：
+    如何实现深度拷贝（克隆）
+    拷贝的数据有对象/数组
+    拷贝的数据里不能有对象/数组
+    即使有对象/数组可以继续遍历对象/数组拿到里面的每一项值，一直到拿到基本数据类型，然后再去复制，这就是深度拷贝
+
+知识点储备
+    如何判断数据类型：arr ---> Array  null ---> Null
+    1、typeof 返回的数据类型 ： String， Number， Boolean， Undefined，Object（null返回的是Object），Function
+    2、Object.prototype.toString.call(obj) : 获取数据类型
+    3、for in 循环遍历，对象（属性名）/数组（下标）
+ */
+
+console.log(Object.prototype.toString.call(1).slice(8, -1)); // Number
+console.log(Object.prototype.toString.call(1.1).slice(8, -1)); // Number
+console.log(Object.prototype.toString.call(NaN).slice(8, -1)); // Number
+console.log(Object.prototype.toString.call(Infinity).slice(8, -1)); // Number
+console.log(Object.prototype.toString.call(false).slice(8, -1)); // Boolean
+console.log(Object.prototype.toString.call('ab').slice(8, -1)); // String
+console.log(Object.prototype.toString.call(null).slice(8, -1)); // Null
+console.log(Object.prototype.toString.call({}).slice(8, -1)); // Object
+console.log(Object.prototype.toString.call([]).slice(8, -1)); // Array
+console.log(Object.prototype.toString.call(() => {}).slice(8, -1)); // Function
+</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
