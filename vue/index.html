@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../css/main.css">
+    <link rel="stylesheet" href="../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Vue 个人日常文档记录</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-puzzle-piece"> Vue 实例化结构</i></div>
+            </div>
+            <div class="panel-body">
+                <pre>
+                    new Vue({
+                        el : '',
+                        data : {}, // 显示 —— {{propertyName}}
+                        computed : {}, // 计算属性，显示 —— {{methodName}}
+                        filters : {}, // 过滤，使用 —— | methodName (methodName(arg...))
+                        methods : {}, // 事件，执行 —— {{methodName()}}
+                        watch : {}, // 属性监听
+                        components : { // 局部组件
+                            componentName : {
+                                props : ['propertyName1', 'propertyName2', ...], // 父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 "prop"
+                                template : '显示的html模版',
+                            }
+                        },
+                    });
+                </pre>
+                <ol>
+                    <li>可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-puzzle-piece"> 基础代码片段库</i></div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="code/base.html" target="_blank">Vue 基础</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="code/command.html" target="_blank">Vue 指令</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="code/filter.html" target="_blank">Vue 过滤器</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="code/components.html" target="_blank">Vue 组件</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-puzzle-piece"> 高阶代码片段库</i></div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="piece/v-if-elseif-else.html" target="_blank">v-if-elseif-else 指令示例</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="piece/v-bind-class-tyle.html" target="_blank">v-bind class,style指令示例</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="piece/v-for.html" target="_blank">v-for 指令示例</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="piece/v-on.html" target="_blank">v-on 指令示例</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel panel-warning">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i> 学习记录</div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <a href="demo/computed.html" target="_blank">computed 计算属性</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="demo/watch.html" target="_blank">watch 监听属性变化</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="demo/v-model-base.html" target="_blank">v-model的基础使用示例</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

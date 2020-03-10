@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/lib/vue.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+<div id="app" class="container">
+    <dl>
+        <dd>请输入数据 : <input type="text" v-model="input"></dd>
+    </dl>
+    <p>你输入的数据是 ： {{input}}, 上一个数据为：{{oldInput}}</p>
+</div>
+
+<script type="text/javascript">
+    let data = {
+        input: 'vm.$watch("propertyName", (newValue, oldValue) => {})',
+        oldInput: ''
+    };
+    let vm = new Vue({
+        el: '#app',
+        data,
+        watch: {
+            input: function (newValue, oldValue) {
+                this.oldInput = oldValue;
+            }
+        }
+    });
+    // 或者
+    // vm.$watch('input', function (newValue, oldValue) {
+    //     this.oldInput = oldValue;
+    // })
+</script>
+</body>
+</html>

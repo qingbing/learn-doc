@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/lib/vue.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+<div id="app" class="container">
+    <dl>
+        <dd>firstName : <input type="text" v-model="firstName"></dd>
+        <dd>lastName : <input type="text" v-model="lastName"></dd>
+    </dl>
+
+    <dl>
+        <dd>firstName : {{firstName}}</dd>
+        <dd>lastName : {{lastName}}</dd>
+        <dt>fullName : {{fullName}}</dt>
+        <dt>upperName : {{upperName}}</dt>
+    </dl>
+
+</div>
+
+<script type="text/javascript">
+    let data = {
+        firstName: 'first name',
+        lastName: 'last name',
+    };
+    new Vue({
+        el: '#app',
+        data,
+        methods: {
+            ucfirst(str) {
+                return str.charAt(0).toUpperCase() + str.slice(1);
+            },
+            upper(str) {
+                return str.toUpperCase();
+            }
+        },
+        computed: {
+            fullName() {
+                return this.ucfirst(this.firstName) + ' ' + this.ucfirst(this.lastName);
+            },
+            upperName: {
+                get() {
+                    return this.upper(this.firstName) + ' ' + this.upper(this.lastName);
+                },
+            }
+        }
+    });
+</script>
+</body>
+</html>

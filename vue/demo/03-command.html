@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/lib/vue.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+<div id="app" class="container">
+    <h1 class="page-header">管道符和过滤器</h1>
+    <p v-if="seen">可以看见我</p>
+    <p><a :href="taobao.url" v-bind:target="taobao.target">{{taobao.label}}</a></p>
+
+    {{testMessage | formatId}}
+    <div :id="id | formatId"></div>
+
+    <h1 class="page-header">v-show 指令</h1>
+    <p v-show="seen">show-true</p>
+    <p v-show="!seen">show-false</p>
+
+    <h1 class="page-header">v-if-elseif-else 指令</h1>
+    <div v-if="score>90">优秀 {{score}}</div>
+    <div v-else-if="score > 80">良好 {{score}}</div>
+    <div v-else-if="score > 60">及格 {{score}}</div>
+    <div v-else>不及格 {{score}}</div>
+
+
+    <h1 class="page-header">v-for 指令</h1>
+    <!-- array -->
+    <ol>
+        <li>
+            <span v-for="val in arr">{{val}},</span>
+        </li>
+        <li>
+            <span v-for="(val,index) in arr">{{index}}:{{val}},</span>
+        </li>
+    </ol>
+    <!-- object -->
+    <ol>
+        <li>
+            <span v-for="val in info">{{val}},</span>
+        </li>
+        <li>
+            <span v-for="(val,key) in info">{{key}}:{{val}},</span>
+        </li>
+        <li>
+            <span v-for="(val,key,index) in info">{{index}}:{{key}}-{{val}},</span>
+        </li>
+    </ol>
+
+    <h3>九九乘法表</h3>
+    <div v-for="x in 9">
+        <span v-for="y in x">{{x}} * {{y}} = {{x * y}}<span v-if="x!=y">; </span> </span>
+    </div>
+
+
+    <h3>数组对象显示</h3>
+    <ul>
+        <li v-for="user in results"> username : {{user.username}}, sex : {{user.sex}}, age : {{user.age}}</li>
+    </ul>
+
+
+    <h1 class="page-header">v-bind:class 绑定class</h1>
+    <div>
+        <div class="css1">单个 style</div>
+        <div :class="'css1'">单个 style,直接class名</div>
+        <div :class="css.strCss1">单个 style</div>
+        <div :class="[css.strCss1]">单个 style,数组形式</div>
+        <div v-bind:class="css.strCss1">单个 style</div>
+        <div :class="{css1:css.boolCss1}">单个 style</div>
+    </div>
+
+    <div>
+        <div class="css2 css3">多个 style</div>
+        <div :class="'css2 css3'">多个 style,直接class名</div>
+        <div :class="['css2','css3']">多个 style 数组绑定class名</div>
+        <div :class="[css.strCss2,css.strCss3]">多个 style 数组绑定</div>
+        <div :class="{css2:css.boolCss2,css3:css.boolCss3}">多个 style 对象绑定</div>
+    </div>
+
+    <div>
+        <div :class="cssObject">对象class 绑定</div>
+    </div>
+
+    <div>
+        <div :class="true ? css.strCss3 : ''">三目运算符绑定class</div>
+        <div :class="[true ? css.strCss2 : '', true ? css.strCss3 : '']">三目运算符绑定class</div>
+    </div>
+
+    <h1 class="page-header">v-bind:style 绑定style</h1>
+    <div>
+        <div style="color: #2e6da4;font-size:16px;">style -common</div>
+        <div :style="{color: 'red', 'font-size':'20px'}">style -common</div>
+        <div :style="{color: 'red', fontSize:'30px'}">style -common</div>
+        <div :style="styleObject">style -object 绑定</div>
+        <div :style="[styleObject,styleObject1]">style - 数组-object 绑定</div>
+    </div>
+
+    <h1 class="page-header">v-on 事件绑定</h1>
+    <div>
+        <ul>
+            <li>
+                <button v-on:click="clickButton('click button')">Click Button : click事件在vue.methods中</button>
+                <button @click="clickButton('click button')">Click Button : click事件在vue.methods中</button>
+            </li>
+
+            <li>
+                <button v-on:click="clickEventButton">Click Button : click事件在vue.methods中</button>
+            </li>
+        </ul>
+    </div>
+
+</div>
+<style type="text/css">
+    .css1 {
+        border: 2px solid red;
+        margin-bottom: 10px;
+    }
+
+    .css2 {
+        border: 2px solid red;
+        margin-bottom: 10px;
+    }
+
+    .css3 {
+        background-color: #2e6da4;
+    }
+</style>
+
+
+<script type="text/javascript">
+    let data = {
+        "seen": false,
+        "id": "test id",
+        "score": "78",
+        "testMessage": "first id",
+        taobao: {
+            url: "http://www.taobao.com",
+            target: "_blank",
+            label: "淘宝"
+        },
+        arr: [33, 44, 22],
+        css: {
+            strCss1: 'css1',
+            boolCss1: true,
+            strCss2: 'css2',
+            boolCss2: true,
+            strCss3: 'css3',
+            boolCss3: true,
+        },
+        cssObject: {
+            css2: true,
+            css3: true,
+        },
+        styleObject: {
+            color: 'red',
+            fontSize: '35px'
+        },
+        styleObject1: {
+            color: 'red',
+            backgroundColor: 'yellow',
+            fontSize: '35px'
+        },
+        info: {
+            username: 'qingbing',
+            sex: 'nan',
+            age: 33
+        },
+        results: [
+            {username: 'qingbing', sex: 'nan', age: 33},
+            {username: 'yongjing', sex: 'nv', age: 31},
+            {username: 'nianyi', sex: 'nv', age: 4},
+        ]
+    };
+
+    let myVue = new Vue({
+        el: '#app',
+        data,
+        filters: {
+            // 首字母大写，单词之间用"_"连接的过滤器
+            formatId(val) {
+                let tt = val.split(" ");
+                let b = [];
+                tt.forEach(function (value, index) {
+                    b.push(value.charAt(0).toUpperCase() + value.slice(1));
+                });
+                return b.join('_');
+            }
+        },
+        methods: {
+            clickButton(msg) {
+                console.log(msg);
+            },
+            clickEventButton(event) {
+                console.log(event);
+            }
+        }
+    });
+
+    function test(msg) {
+        console.log(msg);
+    }
+</script>
+
+
+</body>
+</html>

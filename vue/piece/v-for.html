@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Vue v-for 指令示例</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 数据准备</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+let data = {
+    arr: [33, 44, 22],
+    info: {
+        username: 'qingbing',
+        sex: 'nan',
+        age: 33
+    },
+    results: [
+        {username: 'qingbing', sex: 'nan', age: 33},
+        {username: 'yongjing', sex: 'nv', age: 31},
+        {username: 'nianyi', sex: 'nv', age: 4},
+    ]
+};
+let myVue = new Vue({
+    el: '#app',
+    data
+});</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 数组循环</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;span v-for=&quot;val in arr&quot;&gt;{{val}},&lt;/span&gt;
+&lt;span v-for=&quot;(val,index) in arr&quot;&gt;{{index}}:{{val}},&lt;/span&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. 对象显示</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;span v-for=&quot;val in info&quot;&gt;{{val}},&lt;/span&gt;
+&lt;span v-for=&quot;(val,key) in info&quot;&gt;{{key}}:{{val}},&lt;/span&gt;
+&lt;span v-for=&quot;(val,key,index) in info&quot;&gt;{{index}}:{{key}}-{{val}},&lt;/span&gt;</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. 对象数组显示</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;span v-for=&quot;user in results&quot;&gt; username : {{user.username}},  sex : {{user.sex}},  age : {{user.age}} &lt;br&gt;&lt;/span&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. 九九乘法表</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;div v-for=&quot;x in 9&quot;&gt;
+    &lt;span v-for=&quot;y in x&quot;&gt;{{x}} * {{y}} = {{x * y}}&lt;span v-if=&quot;x!=y&quot;&gt;; &lt;/span&gt; &lt;/span&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="container margin-top">
+        <div class="panel-group">
+            <div class="panel panel-info">
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                        <ul class="links">
+                            <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                            <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                        </ul>
+                        <p>
+                            Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                            备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

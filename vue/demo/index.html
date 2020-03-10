@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/lib/vue.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+<div id="app" class="container">
+    <h1 class="page-header">使用的全局组件</h1>
+    <global-component></global-component>
+
+    <h1 class="page-header">使用的局部组件</h1>
+    <body-component name="qingbing" sex="nan"></body-component>
+
+    <h1 class="page-header">动态绑定组件信息</h1>
+    <p><input type="text" v-model="syncMsg"></p>
+    <sync-component name="qingbing" sex="nan"></sync-component>
+</div>
+<script type="text/javascript">
+    Vue.component('global-component', {
+        props: ['name'],
+        template: '<div>全局组件使用 : <span>hello, {{name}}</span></div>'
+    });
+    let data = {
+        syncMsg : 'sync syncMsg'
+    };
+    let vm = new Vue({
+        el: '#app',
+        data,
+        components: { // 局部组件
+            bodyComponent: {
+                props: ['name', 'sex'],
+                template: '<div>局部组件使用 ： <span>name : {{name}}; sex : {{sex}}</span></div>'
+            },
+            syncComponent: { // 动态属性组件
+                props: ['inputMsg'],
+                template: '<div>局部组件使用 ： <span>name : {{name}}; sex : {{sex}}</span></div>'
+            }
+        },
+    });
+</script>
+
+</body>
+</html>

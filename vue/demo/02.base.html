@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/lib/vue.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div id="app">
+    <p>显示属性 ： {{title}}</p>
+    <p>函数调用 ： {{show()}}</p>
+    <p>去年是 ： {{year - 1}}</p>
+    <div v-html="content"></div>
+</div>
+
+
+<script type="text/javascript">
+    let data = {
+        year : 2020,
+        title: '属性显示',
+        test: '测试属性',
+        content : '<p>哈哈</p>'
+    };
+    let myVue = new Vue({
+        el: '#app',
+        data,
+        methods: {
+            show() {
+                return `这个是函数返回显示 - ${this.test}`;
+            }
+        }
+    });
+    // 修改属性值
+    data.test = '数据修改';
+    // myVue.test = '实例修改';
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="js/lib/vue.js"></script>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+<div id="app" class="container">
+    <h1 class="page-header">v-model的基础使用示例</h1>
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. v-model的修饰符</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li>
+                        <p>.lazy ：在默认情况下， v-model 在 input 事件中同步输入框的值与数据，但你可以添加一个修饰符 lazy ，从而转变为在 change 事件中同步：</p>
+                        <pre>&lt;!-- 在 &quot;change&quot; 而不是 &quot;input&quot; 事件中更新 --&gt;
+&lt;input v-model.lazy=&quot;msg&quot; &gt;</pre>
+                    </li>
+                    <li>
+                        <p>.number ： 如果想自动将用户的输入值转为 Number 类型（如果原值的转换结果为 NaN 则返回原值），可以添加一个修饰符 number 给 v-model 来处理输入值：</p>
+                        <pre>&lt;input v-model.number=&quot;age&quot; type=&quot;number&quot;&gt;</pre>
+                    </li>
+                    <li>
+                        <p>.trim ： 如果要自动过滤用户输入的首尾空格，可以添加 trim 修饰符到 v-model 上过滤输入</p>
+                        <pre>&lt;input v-model.trim=&quot;msg&quot;&gt;</pre>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. v-model的基础使用示例</div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        input-label
+                    </div>
+                    <div class="col-md-4">
+                        <input type="text" v-model="inputMessage" />
+                    </div>
+                    <div class="col-md-4">
+                        {{inputMessage}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        textarea
+                    </div>
+                    <div class="col-md-4">
+                        <textarea v-model="textareaMessage"></textarea>
+                    </div>
+                    <div class="col-md-4">
+                        {{textareaMessage}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        select
+                    </div>
+                    <div class="col-md-4">
+                        <select v-model="selectModel">
+                            <option value="option_01">选项一</option>
+                            <option value="option_02">选项二</option>
+                            <option value="option_03">选项三</option>
+                            <option value="option_04">选项四</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        {{selectModel}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        select-multi
+                    </div>
+                    <div class="col-md-4">
+                        <select v-model="selectMultiModel" multiple="multiple">
+                            <option value="option_01">选项一</option>
+                            <option value="option_02">选项二</option>
+                            <option value="option_03">选项三</option>
+                            <option value="option_04">选项四</option>
+                        </select>
+                    </div>
+                    <div class="col-md-4">
+                        {{selectMultiModel}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        input-radio
+                    </div>
+                    <div class="col-md-4">
+                        <label for="radio_01"><input type="radio" id="radio_01" value="option_01" v-model="inputRadio">radio-option-01</label><br>
+                        <label for="radio_02"><input type="radio" id="radio_02" value="option_02" v-model="inputRadio">radio-option-02</label><br>
+                        <label for="radio_03"><input type="radio" id="radio_03" value="option_03" v-model="inputRadio">radio-option-03</label><br>
+                    </div>
+                    <div class="col-md-4">
+                        {{inputRadio}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        input-checkbox
+                    </div>
+                    <div class="col-md-4">
+                        <label for="checkbox_01"><input type="checkbox" id="checkbox_01" v-model="inputCheckbox">请选择</label>
+                    </div>
+                    <div class="col-md-4">
+                        {{inputCheckbox}}
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        input-checkbox-multi
+                    </div>
+                    <div class="col-md-4">
+                        <label for="checkbox_multi_01"><input type="checkbox" id="checkbox_multi_01" value="checkbox_multi_01" v-model="inputCheckboxMulti">checkbox_multi_01</label>
+                        <label for="checkbox_multi_02"><input type="checkbox" id="checkbox_multi_02" value="checkbox_multi_02" v-model="inputCheckboxMulti">checkbox_multi_02</label>
+                        <label for="checkbox_multi_03"><input type="checkbox" id="checkbox_multi_03" value="checkbox_multi_03" v-model="inputCheckboxMulti">checkbox_multi_03</label>
+                    </div>
+                    <div class="col-md-4">
+                        {{inputCheckboxMulti}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    let data = {
+        "inputMessage" : "请输入input信息",
+        "textareaMessage" : "请输入textarea信息",
+        "selectModel" : "option_03",
+        "selectMultiModel" : ["option_01","option_03"],
+        "inputRadio" : "option_02",
+        "inputCheckbox" : true,
+        "inputCheckboxMulti" : ["checkbox_multi_02","checkbox_multi_03"],
+    };
+    let myVue = new Vue({
+        el: '#app',
+        data,
+    });
+</script>
+
+
+</body>
+</html>

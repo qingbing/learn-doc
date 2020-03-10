@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Vue 指令</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>0. 什么是指令</div>
+            </div>
+            <div class="panel-body">
+                <p>是Vue中带有 v- 前缀的特殊属性，用于在表达式的值改变时，将某些行为应用到DOM上</p>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. <code>v-html</code> —— data数据绑定：用户定义的变量是html，用于输出html代码</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+    &lt;p v-html="content">&lt;/p&gt;</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. <code>v-model</code> —— data数据绑定：数据双向绑定，用于 input、textarea、select、checkbox、radio等表单控件</div>
+            </div>
+            <div class="panel-body">
+                <a href="../demo/v-model-base.html" class="btn btn-warning"><i class="fa fa-link"></i> 基本使用示例</a>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. <code>v-if</code> —— 判断指令：在html的document中被移除</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;p v-if=&quot;seen&quot;&gt;可以看见我&lt;/p&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>4. <code>v-show</code> —— 是否显示指令：在html的document中被隐藏，其实就是 style="display:none"</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;p v-if=&quot;seen&quot;&gt;可以看见我&lt;/p&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. <code>v-bind</code> —— 属性绑定指令</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+完整语法
+&lt;a v-bind:href=&quot;taobao.url&quot; v-bind:target=&quot;taobao.target&quot;&gt;{{taobao.label}}&lt;/a&gt;
+简写语法
+&lt;a :href=&quot;taobao.url&quot; :target=&quot;taobao.target&quot;&gt;{{taobao.label}}&lt;/a&gt;
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. <code>v-for</code> —— 循环显示</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;ol&gt;
+    &lt;li&gt;
+        &lt;!-- object or array --&gt;
+        &lt;span v-for=&quot;val in info&quot;&gt;{{val}},&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;!-- object or array --&gt;
+        &lt;span v-for=&quot;(val,index) in arr&quot;&gt;{{index}}:{{val}},&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;!-- object --&gt;
+        &lt;span v-for=&quot;(val,key,index) in info&quot;&gt;{{index}}:{{key}}-{{val}},&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>5. <code>v-on</code> —— 事件绑定</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;button v-on:click=&quot;clickButton(&#x27;click button&#x27;)&quot;&gt;Click Button : click事件在vue.methods中&lt;/button&gt;
+&lt;button @click=&quot;clickButton(&#x27;click button&#x27;)&quot;&gt;Click Button : click事件在vue.methods中&lt;/button&gt;
+                </pre>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

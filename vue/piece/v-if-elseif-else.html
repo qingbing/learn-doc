@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Vue v-if-elseif-else 指令示例</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                html-template
+                <pre>
+&lt;div v-if=&quot;score&gt;90&quot;&gt;优秀 {{score}}&lt;/div&gt;
+&lt;div v-else-if=&quot;score &gt; 80&quot;&gt;良好 {{score}}&lt;/div&gt;
+&lt;div v-else-if=&quot;score &gt; 60&quot;&gt;及格 {{score}}&lt;/div&gt;
+&lt;div v-else&gt;不及格 {{score}}&lt;/div&gt;
+                </pre>
+                new Vue
+                <pre>
+let data = {
+    "score": "78"
+};
+let myVue = new Vue({
+    el: '#app',
+    data
+});
+                </pre>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

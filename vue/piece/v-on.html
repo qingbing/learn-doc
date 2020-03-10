@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Vue v-on 指令示例</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. v-on 基本语法</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;!-- 完整语法 --&gt;
+&lt;a v-on:click=&quot;doSomething&quot;&gt;&lt;/a&gt;
+&lt;!-- 缩写 --&gt;
+&lt;a @click=&quot;doSomething&quot;&gt;&lt;/a&gt;</pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <h1 class="page-header">时间监听</h1>
+        <input type="button" value="Counter+1" @click="counter++">
+        <span>Counter : {{counter}}</span>
+    </div>
+
+    <div class="row">
+        <h1 class="page-header">v-on 接受方法调用</h1>
+        <input type="button" value="方法调用，参数event" @click="greet">
+    </div>
+
+    <div class="row">
+        <h1 class="page-header">v-on 使用JavaScript</h1>
+        <input type="button" value="javascript 内联函数" @click="sayHi('hello', 'qingbing')">
+    </div>
+
+    <div class="row">
+        <h1 class="page-header">v-on 事件修饰符</h1>
+        <pre>
+&lt;!-- 阻止单击事件冒泡 --&gt;
+&lt;a v-on:click.stop=&quot;doThis&quot;&gt;&lt;/a&gt;
+&lt;!-- 提交事件不再重载页面 --&gt;
+&lt;form v-on:submit.prevent=&quot;onSubmit&quot;&gt;&lt;/form&gt;
+&lt;!-- 修饰符可以串联  --&gt;
+&lt;a v-on:click.stop.prevent=&quot;doThat&quot;&gt;&lt;/a&gt;
+&lt;!-- 只有修饰符 --&gt;
+&lt;form v-on:submit.prevent&gt;&lt;/form&gt;
+&lt;!-- 添加事件侦听器时使用事件捕获模式 --&gt;
+&lt;div v-on:click.capture=&quot;doThis&quot;&gt;...&lt;/div&gt;
+&lt;!-- 只当事件在该元素本身（而不是子元素）触发时触发回调 --&gt;
+&lt;div v-on:click.self=&quot;doThat&quot;&gt;...&lt;/div&gt;
+
+&lt;!-- click 事件只能点击一次，2.1.4版本新增 --&gt;
+&lt;a v-on:click.once=&quot;doThis&quot;&gt;&lt;/a&gt;</pre>
+    </div>
+
+    <div class="row">
+        <h1 class="page-header">v-on 按键修饰符</h1>
+        <pre>&lt;!-- 只有在 keyCode 是 13 时调用 vm.submit() --&gt;
+&lt;input v-on:keyup.13=&quot;submit&quot;&gt;
+记住所有的 keyCode 比较困难，所以 Vue 为最常用的按键提供了别名：
+
+&lt;!-- 同上 --&gt;
+&lt;input v-on:keyup.enter=&quot;submit&quot;&gt;
+&lt;!-- 缩写语法 --&gt;
+&lt;input @keyup.enter=&quot;submit&quot;&gt;
+
+
+&lt;p&gt;&lt;!-- Alt + C --&gt;
+&lt;input @keyup.alt.67=&quot;clear&quot;&gt;
+&lt;!-- Ctrl + Click --&gt;
+&lt;div @click.ctrl=&quot;doSomething&quot;&gt;Do something&lt;/div&gt;</pre>
+
+        <ol>
+            <li>.enter</li>
+            <li>.tab</li>
+            <li>.delete (捕获 "删除" 和 "退格" 键)</li>
+            <li>.esc</li>
+            <li>.space</li>
+            <li>.up</li>
+            <li>.down</li>
+            <li>.left</li>
+            <li>.right</li>
+            <li>.ctrl</li>
+            <li>.alt</li>
+            <li>.shift</li>
+            <li>.meta</li>
+        </ol>
+    </div>
+
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    let data = {
+        counter: 0
+
+    };
+    let vm = new Vue({
+        el: '#app',
+        data,
+        methods: {
+            greet(event) {
+                console.log('greeting  ' + event.target.tagName);
+            },
+            sayHi(greet, name) {
+                console.log(`${greet} ${name}`);
+            }
+        }
+    });
+</script>
+
+</body>
+</html>

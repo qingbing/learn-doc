@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang0="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>Vue v-bind class,style指令示例</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 数据准备</div>
+            </div>
+            <div class="panel-body">
+                    <ul>
+                        <li>
+                            <dl>
+                                <dt>css-class 代码准备</dt>
+                                <dd><pre>
+.css1 { border: 2px solid red; margin-bottom: 10px;}
+.css2 { border: 2px solid red; margin-bottom: 10px;}
+.css3 { background-color: #2e6da4;}</pre></dd>
+                            </dl>
+                        </li>
+                        <li>
+                            <dl>
+                                <dt>js-数据准备</dt>
+                                <dd><pre>
+let data = {
+    css: {
+        strCss1: 'css1',
+        boolCss1: true,
+        strCss2: 'css2',
+        boolCss2: true,
+        strCss3: 'css3',
+        boolCss3: true,
+    },
+    cssObject: {
+        css2: true,
+        css3: true,
+    },
+    styleObject: {
+        color: 'red',
+        fontSize: '35px'
+    },
+    styleObject1: {
+        color: 'red',
+        backgroundColor: 'yellow',
+        fontSize: '35px'
+    }
+};
+let myVue = new Vue({
+    el: '#app',
+    data
+});</pre></dd>
+                            </dl>
+                        </li>
+                    </ul>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. <code>v-bind:class</code> 绑定class</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;div&gt;
+    &lt;div class=&quot;css1&quot;&gt;单个 style&lt;/div&gt;
+    &lt;div :class=&quot;&#x27;css1&#x27;&quot;&gt;单个 style,直接class名&lt;/div&gt;
+    &lt;div :class=&quot;css.strCss1&quot;&gt;单个 style&lt;/div&gt;
+    &lt;div :class=&quot;[css.strCss1]&quot;&gt;单个 style,数组形式&lt;/div&gt;
+    &lt;div v-bind:class=&quot;css.strCss1&quot;&gt;单个 style&lt;/div&gt;
+    &lt;div :class=&quot;{css1:css.boolCss1}&quot;&gt;单个 style&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;div class=&quot;css2 css3&quot;&gt;多个 style&lt;/div&gt;
+    &lt;div :class=&quot;&#x27;css2 css3&#x27;&quot;&gt;多个 style,直接class名&lt;/div&gt;
+    &lt;div :class=&quot;[&#x27;css2&#x27;,&#x27;css3&#x27;]&quot;&gt;多个 style 数组绑定class名&lt;/div&gt;
+    &lt;div :class=&quot;[css.strCss2,css.strCss3]&quot;&gt;多个 style 数组绑定&lt;/div&gt;
+    &lt;div :class=&quot;{css2:css.boolCss2,css3:css.boolCss3}&quot;&gt;多个 style 对象绑定&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;div :class=&quot;cssObject&quot;&gt;对象class 绑定&lt;/div&gt;
+&lt;/div&gt;
+&lt;div&gt;
+    &lt;div :class=&quot;true ? css.strCss3 : &#x27;&#x27;&quot;&gt;三目运算符绑定class&lt;/div&gt;
+    &lt;div :class=&quot;[true ? css.strCss2 : &#x27;&#x27;, true ? css.strCss3 : &#x27;&#x27;]&quot;&gt;三目运算符绑定class&lt;/div&gt;
+&lt;/div&gt;</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. <code>v-bind:style</code> 绑定 style</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+&lt;div style=&quot;color: #2e6da4;font-size:16px;&quot;&gt;style -common&lt;/div&gt;
+&lt;div :style=&quot;{color: &#x27;red&#x27;, &#x27;font-size&#x27;:&#x27;20px&#x27;}&quot;&gt;style -common&lt;/div&gt;
+&lt;div :style=&quot;{color: &#x27;red&#x27;, fontSize:&#x27;30px&#x27;}&quot;&gt;style -common&lt;/div&gt;
+&lt;div :style=&quot;styleObject&quot;&gt;style -object 绑定&lt;/div&gt;
+&lt;div :style=&quot;[styleObject,styleObject1]&quot;&gt;style - 数组-object 绑定&lt;/div&gt;</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
