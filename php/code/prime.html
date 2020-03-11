@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>基本算法 —— 求素数（质数）</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 基本算法 —— 求素数（质数）</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * 基本算法——求素数（质数）
+ * 素数：又叫质数，约数只有1和它本身的正整数
+ * 基本思想：从2开始到sqrt(n)进行模运算，只要有一个结果为0表示为素数，终止程序返回true
+ */
+function isPrime($num)
+{
+    // 不是整数
+    if (!is_integer($num)) {
+        return false;
+    }
+    // 小于1的数不是素数
+    if ($num <= 1) {
+        return false;
+    }
+    // 2是素数，直接返回
+    if (2 === $num || 3 === $num) {
+        return true;
+    }
+    // 大于3的数判断
+    $i = 2;
+    $max = sqrt($num);
+    while (true) {
+        if (0 === $num % $i) {
+            return false;
+        }
+        $i++;
+        if ($i > $max) {
+            return true;
+        }
+    }
+    return false;
+}
+                </pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 使用示例</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+//判断一个数是否是素数
+var_dump(isPrime(24));
+
+/**
+ * 求100以内的素数
+ */
+$R = [];
+$n = 2;
+array_push($R, $n);
+$n++;
+for (; $n < 100; $n += 2) {
+    if (isPrime($n)) {
+        array_push($R, $n);
+    }
+}
+var_dump($R);
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

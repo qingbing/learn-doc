@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>基本算法 —— 快速排序</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 基本算法 —— 快速排序</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * 基本算法 —— 快速排序
+ * 快速排序：是对冒泡排序的一种改进,通过一趟排序将要排序的数据分割成独立的两部分，其中一部分的所有数据都比另外一部分的所有数据都要小，然后再按此方法对这两部分数据分别进行快速排序
+ */
+function quickSort($arr)
+{
+    $len = count($arr);
+    if ($len <= 1) {
+        return $arr;
+    }
+    $key = $arr[0];
+    $left_arr = [];
+    $right_arr = [];
+    for ($i = 1; $i < $len; $i++) {
+        if ($key <= $arr[$i]) {
+            array_push($right_arr, $arr[$i]);
+        } else {
+            array_push($left_arr, $arr[$i]);
+        }
+    }
+    $left_arr = quickSort($left_arr);
+    $right_arr = quickSort($right_arr);
+    return array_merge($left_arr, [$key], $right_arr);
+}</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 使用示例</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+$arr = [4, 6, 9, 7, 2, 5, 8];
+var_dump($arr);
+$arr = selectSort($arr);
+var_dump($arr);</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

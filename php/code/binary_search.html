@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>基本算法 —— 二分查找位置</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 基本算法 —— 二分查找位置</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+/**
+ * 基本算法 —— 二分查找位置
+ * 二分查找：折半查找，在一组有序的数组中查找一个数是否存在
+ */
+function binarySearch($arr, $num, $low = null, $high = null)
+{
+    // 确定最大索引和最小索引
+    null === $low && $low = 0;
+    null === $high && $high = count($arr) - 1;
+    // 寻找$num应该插入的位置
+    while ($low <= $high) {
+        $mid = intval(($low + $high) / 2);
+        if ($arr[$mid] > $num) {
+            $high = $mid - 1;
+        } else if ($arr[$high] < $num) {
+            $low = $mid + 1;
+        } else {
+            return $mid;
+        }
+    }
+    return -1;
+}</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. 使用示例</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+$arr = [1, 2, 4, 5, 7, 9, 17];
+var_dump(binarySearch($arr, 8));
+var_dump(binarySearch($arr, 9));
+var_dump(binarySearch($arr, 20));
+                </pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
