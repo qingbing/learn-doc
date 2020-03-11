@@ -25,8 +25,40 @@
                         filters : {}, // 过滤，使用 —— | methodName (methodName(arg...))
                         methods : {}, // 事件，执行 —— {{methodName()}}
                         watch : {}, // 属性监听
+                        directives : {}, // 自定义指令
                         components : { // 局部组件
                             componentName : {
+                                props : { // 验证类型： String,Number,Boolean,Array,Object,Date,Function,Symbol
+                                    // 基础的类型检查 (`null` 和 `undefined` 会通过任何类型验证)
+                                    propA: Number,
+                                    // 多个可能的类型
+                                    propB: [String, Number],
+                                    // 必填的字符串
+                                    propC: {
+                                        type: String,
+                                        required: true
+                                    },
+                                    // 带有默认值的数字
+                                    propD: {
+                                        type: Number,
+                                        default: 100
+                                    },
+                                    // 带有默认值的对象
+                                    propE: {
+                                        type: Object,
+                                        // 对象或数组默认值必须从一个工厂函数获取
+                                        default: function () {
+                                            return { message: 'hello' }
+                                        }
+                                    },
+                                    // 自定义验证函数
+                                    propF: {
+                                        validator: function (value) {
+                                            // 这个值必须匹配下列字符串中的一个
+                                            return ['success', 'warning', 'danger'].indexOf(value) !== -1
+                                        }
+                                    }
+                                },
                                 props : ['propertyName1', 'propertyName2', ...], // 父组件的数据需要通过 props 把数据传给子组件，子组件需要显式地用 props 选项声明 "prop"
                                 template : '显示的html模版',
                             }
@@ -35,6 +67,18 @@
                 </pre>
                 <ol>
                     <li>可以使用 methods 来替代 computed，效果上两个都是一样的，但是 computed 是基于它的依赖缓存，只有相关依赖发生改变时才会重新取值。而使用 methods ，在重新渲染的时候，函数总会重新调用执行</li>
+                </ol>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-puzzle-piece"></i>简写代码</div>
+            </div>
+            <div class="panel-body">
+                <ol>
+                    <li><code>v-bind</code> 简写为 "<code>:</code>" : <code>v-bind:href="https://www.baidu.com"</code> => <code>:href="https://www.baidu.com"</code></li>
+                    <li><code>v-on</code> 简写为 "<code>@</code>" : <code>v-on:click="xx"</code> => <code>@click="xx"</code></li>
                 </ol>
             </div>
         </div>
@@ -97,6 +141,9 @@
                     </div>
                     <div class="col-md-4">
                         <a href="demo/v-model-base.html" target="_blank">v-model的基础使用示例</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="demo/component.html" target="_blank">Component使用示例</a>
                     </div>
                 </div>
             </div>
