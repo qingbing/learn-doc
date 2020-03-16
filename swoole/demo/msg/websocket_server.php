@@ -14,7 +14,6 @@ use Swoole\WebSocket\Frame;
 use Swoole\WebSocket\Server;
 
 // 指定缓存目录
-defined('CACHE_PATH') or define('CACHE_PATH', __DIR__ . '/runtime');
 defined('CONFIG_PATH') or define('CONFIG_PATH', __DIR__ . '/conf');
 defined('RUNTIME_PATH') or define('RUNTIME_PATH', __DIR__ . '/runtime');
 
@@ -90,8 +89,8 @@ $ws->on('message', function (Server $ws, Frame $frame) {
                     ]));
                 } else {
                     $connectionFds = iterator_to_array($ws->connections);
-                    var_dump($fds);
-                    var_dump($connectionFds);
+//                    var_dump($fds);
+//                    var_dump($connectionFds);
                     foreach ($fds as $fd) {
                         if (in_array($fd, $connectionFds)) {
                             $ws->push($fd, json_encode([
