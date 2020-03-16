@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>LEARNER DOC</title>
+    <link rel="stylesheet" href="../../css/main.css">
+    <link rel="stylesheet" href="../../css/site.css">
+</head>
+<body>
+
+<div class="container">
+    <h1>swoole-聊天系统</h1>
+
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>1. 聊天室原理</div>
+            </div>
+            <div class="panel-body">
+                <img src="../demo/msg/data/archetype.png" height="100%" width="100%"/>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>2. php-swoole代码</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+$ws = new Server('0.0.0.0', 9502);
+
+//监听WebSocket连接打开事件
+$ws->on('open', function (Server $ws, Request $request) {
+    $ws->push($request->fd, json_encode([
+        'type' => 'connection',
+    ]));
+});
+
+//监听WebSocket连接关闭事件
+$ws->on('close', function (Server $ws, $fd) {
+    echo "客户端[{$fd}] : 关闭\n";
+});
+
+//监听WebSocket消息事件
+$ws->on('message', function (Server $ws, Frame $frame) {
+    $data = json_decode($frame->data, true);
+    if (!is_array($data)) {
+        $ws->push($frame->fd, json_encode([
+            'type' => 'error',
+            'message' => '数据不能解析',
+            'data' => $frame->data,
+        ]));
+    } elseif (!isset($data['type'])) {
+        $ws->push($frame->fd, json_encode([
+            'type' => 'error',
+            'message' => '数据不带操作类型',
+            'data' => $frame->data,
+        ]));
+    } else {
+        // 获取缓存实例
+        $cache = FileCache::getInstance('file-cache');
+        switch ($data['type']) {
+            case 'register':
+                $fds = $cache->get($data['myid']);
+                if ($fds) {
+                    array_push($fds, $frame->fd);
+                } else {
+                    $fds = [$frame->fd];
+                }
+                $cache->set($data['myid'], $fds);
+                $ws->push($frame->fd, json_encode([
+                    'type' => 'register',
+                    'myid' => $data['myid'],
+                    'fd' => $frame->fd,
+                ]));
+                break;
+            case 'cancel':
+                $fds = $cache->get($data['myid']);
+                if ($fds) {
+                    $fds = array_diff($fds, [$frame->fd]);
+                } else {
+                    $fds = [];
+                }
+                $cache->set($data['myid'], $fds);
+                $ws->push($frame->fd, json_encode([
+                    'type' => 'cancel',
+                    'fd' => $frame->fd,
+                ]));
+                break;
+            case 'message':
+                $fds = $cache->get($data['toid']);
+                if (empty($fds)) {
+                    $ws->push($frame->fd, json_encode([
+                        'type' => 'error',
+                        'message' => '没有接受者',
+                        'data' => $frame->data,
+                    ]));
+                } else {
+                    $connectionFds = iterator_to_array($ws->connections);
+//                    var_dump($fds);
+//                    var_dump($connectionFds);
+                    foreach ($fds as $fd) {
+                        if (in_array($fd, $connectionFds)) {
+                            $ws->push($fd, json_encode([
+                                'type' => 'message',
+                                'data' => $data,
+                            ]));
+                        }
+                    }
+                }
+
+                break;
+        }
+    }
+
+    echo "收到消息: {$frame->data}\n";
+//    foreach ($ws->connections as $fd) {
+//        $ws->push($fd, $frame->data);
+//    }
+});
+
+$ws->start();</pre>
+            </div>
+        </div>
+
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title"><i class="fa fa-book"></i>3. js重要代码</div>
+            </div>
+            <div class="panel-body">
+                <pre>
+        let websocket = new WebSocket('ws://172.16.37.128:9502');
+        let $message = $('#message');
+        let myid, toid;
+
+        websocket.onopen = function (evt) {
+            console.log("WebSocket 已经打开");
+        };
+
+        websocket.onclose = function (evt) {
+            console.log("WebSocket 已经关闭");
+        };
+
+        websocket.onerror = function (evt, e) {
+            console.log("WebSocket-Error  ->  " + evt.data);
+        };
+
+        websocket.onmessage = function (evt) {
+            let data = JSON.parse(evt.data);
+            let $localName = $('#localName');
+            if (!data || !data.type) {
+                return;
+            }
+            switch (data.type) {
+                case 'connection':
+                    console.log('Connection Success');
+                    break;
+                case 'register':
+                    myid = data.myid;
+                    $localName.html(evt.data);
+                    console.log('Register Success');
+                    break;
+                case 'cancel':
+                    myid = undefined;
+                    $localName.html(evt.data);
+                    console.log('Cancel Success');
+                    break;
+                default:
+                    break;
+            }
+            let type = data.type;
+            delete (data.type);
+
+            let html = `<div>TYPE : ${type} : ` + JSON.stringify(data) + `</div>`
+            $('#getMessage').append(html);
+        };
+
+        $('#BtnRegister').on('click', () => {
+            if (myid) {
+                alert('已经注册了 ： ' + myid);
+            } else {
+                let myid = $('#myid').val();
+                if (!myid) {
+                    alert('请先输入myid');
+                } else {
+                    websocket.send(JSON.stringify({
+                        type: 'register',
+                        myid: myid
+                    }));
+                }
+            }
+            return false;
+        });
+        $('#BtnCancel').on('click', () => {
+            if (!myid) {
+                alert('没有注册用户');
+            } else {
+                websocket.send(JSON.stringify({
+                    type: 'cancel',
+                    myid: myid
+                }));
+            }
+
+            return false;
+        });
+        $('#BtnSend').on('click', () => {
+            if (!myid) {
+                alert('没有注册用户');
+                return;
+            }
+            let $message = $('#message');
+            let message = $message.val();
+            if (!message) {
+                alert('请输入消息');
+            } else {
+                websocket.send(JSON.stringify({
+                    type: 'message',
+                    toid: $('#toid').val(),
+                    myid: myid,
+                    message: message,
+                }));
+            }
+
+            return false;
+        });</pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container margin-top">
+    <div class="panel-group">
+        <div class="panel panel-info">
+            <div class="panel-body">
+                <div class="row">
+                    <div class="link_title"><i class="fa fa-link"></i>友情链接：</div>
+                    <ul class="links">
+                        <li><a href="http://www.qiyezhu.net" target="_blank">qiyezhu.net</a></li>
+                        <li><a href="http://www.phpcorner.net" target="_blank">PhpCorner</a></li>
+                    </ul>
+                    <p>
+                        Power By <a href="#" target="_blank">@phpcorner</a>，Copy Right&copy; 2019-05 ;
+                        备案号：<a href="http://www.beian.miit.gov.cn" target="_blank">蜀ICP备12030697号</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
